@@ -9,6 +9,8 @@ import {
   Settings2Icon,
 } from "lucide-react";
 
+import colors from "@/config/colors";
+
 // SidebarRoutes is an array of objects that contains the name, href, and icon of each route in the sidebar
 const SidebarRoutes = [
   {
@@ -18,7 +20,7 @@ const SidebarRoutes = [
     icon: (
       <LayoutDashboard
         size={16}
-        color='skyblue'
+        color={colors.dashboardIcon}
       />
     ),
   },
@@ -29,7 +31,7 @@ const SidebarRoutes = [
     icon: (
       <MessageSquare
         size={16}
-        color='violet'
+        color={colors.messageIcon}
       />
     ),
   },
@@ -40,7 +42,7 @@ const SidebarRoutes = [
     icon: (
       <ImageIcon
         size={16}
-        color='#008000'
+        color={colors.imageIcon}
       />
     ),
   },
@@ -51,7 +53,7 @@ const SidebarRoutes = [
     icon: (
       <VideoIcon
         size={16}
-        color='#FF0000'
+        color={colors.videoIcon}
       />
     ),
   },
@@ -62,7 +64,7 @@ const SidebarRoutes = [
     icon: (
       <Music2Icon
         size={16}
-        color='#800080'
+        color={colors.musicIcon}
       />
     ),
   },
@@ -73,7 +75,7 @@ const SidebarRoutes = [
     icon: (
       <Code2Icon
         size={16}
-        color='#FFA500'
+        color={colors.codeIcon}
       />
     ),
   },
@@ -84,8 +86,7 @@ const SidebarRoutes = [
     icon: (
       <Settings2Icon
         size={16}
-        color='#808080
-        '
+        color={colors.settingsIcon}
       />
     ),
   },
@@ -99,7 +100,7 @@ const Tools = [
     icon: (
       <MessageSquare
         size={24}
-        color='violet'
+        color={colors.messageIcon}
       />
     ),
   },
@@ -110,7 +111,7 @@ const Tools = [
     icon: (
       <ImageIcon
         size={24}
-        color='#008000'
+        color={colors.imageIcon}
       />
     ),
   },
@@ -121,7 +122,7 @@ const Tools = [
     icon: (
       <VideoIcon
         size={24}
-        color='#FF0000'
+        color={colors.videoIcon}
       />
     ),
   },
@@ -132,7 +133,7 @@ const Tools = [
     icon: (
       <Music2Icon
         size={24}
-        color='#800080'
+        color={colors.musicIcon}
       />
     ),
   },
@@ -143,7 +144,7 @@ const Tools = [
     icon: (
       <Code2Icon
         size={24}
-        color='#FFA500'
+        color={colors.codeIcon}
       />
     ),
   },
