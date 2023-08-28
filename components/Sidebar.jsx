@@ -5,7 +5,7 @@ import { Montserrat } from "next/font/google";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import SidebarRoutes from "@/AppData/AppData";
+import { SidebarRoutes } from "@/AppData/AppData";
 
 // Use the montserrat font for the logo
 const montserrat = Montserrat({

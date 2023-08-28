@@ -40,7 +40,7 @@ const SidebarRoutes = [
     icon: (
       <ImageIcon
         size={16}
-        color='white'
+        color='#008000'
       />
     ),
   },
@@ -51,7 +51,7 @@ const SidebarRoutes = [
     icon: (
       <VideoIcon
         size={16}
-        color='red'
+        color='#FF0000'
       />
     ),
   },
@@ -62,7 +62,7 @@ const SidebarRoutes = [
     icon: (
       <Music2Icon
         size={16}
-        color='gold'
+        color='#800080'
       />
     ),
   },
@@ -73,7 +73,7 @@ const SidebarRoutes = [
     icon: (
       <Code2Icon
         size={16}
-        color='green'
+        color='#FFA500'
       />
     ),
   },
@@ -84,9 +84,68 @@ const SidebarRoutes = [
     icon: (
       <Settings2Icon
         size={16}
-        color='grey'
+        color='#808080
+        '
       />
     ),
   },
 ];
-export default SidebarRoutes;
+
+const Tools = [
+  {
+    id: 1,
+    name: "Conversation",
+    href: "/conversation",
+    icon: (
+      <MessageSquare
+        size={24}
+        color='violet'
+      />
+    ),
+  },
+  {
+    id: 2,
+    name: "Image Generation",
+    href: "/image",
+    icon: (
+      <ImageIcon
+        size={24}
+        color='#008000'
+      />
+    ),
+  },
+  {
+    id: 3,
+    name: "Video Generation",
+    href: "/video",
+    icon: (
+      <VideoIcon
+        size={24}
+        color='#FF0000'
+      />
+    ),
+  },
+  {
+    id: 4,
+    name: "Music Generation",
+    href: "/music",
+    icon: (
+      <Music2Icon
+        size={24}
+        color='#800080'
+      />
+    ),
+  },
+  {
+    id: 5,
+    name: "Code Generation",
+    href: "/code",
+    icon: (
+      <Code2Icon
+        size={24}
+        color='#FFA500'
+      />
+    ),
+  },
+];
+export { SidebarRoutes, Tools };
