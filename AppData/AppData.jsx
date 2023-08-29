@@ -7,6 +7,7 @@ import {
   Music2Icon,
   Code2Icon,
   Settings2Icon,
+  SendIcon,
 } from "lucide-react";
 
 import colors from "@/config/colors";
@@ -149,4 +150,5 @@ const Tools = [
     ),
   },
 ];
+
 export { SidebarRoutes, Tools };

@@ -1,10 +1,14 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { MessageSquare } from "lucide-react";
+import {
+  MessageSquare,
+  SendIcon,
+} from "lucide-react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { SendRequestButton } from "@/AppData/AppData";
 import Heading from "@/components/Heading";
 import colors from "@/config/colors";
 import formSchema from "./formSchema";
@@ -50,33 +54,45 @@ const ConversationPage = () => {
         <div>
           {/* Creating the form which takes all the props from form constant */}
           <Form {...form}>
-          <form
-  onSubmit={form.handleSubmit(onSubmit)}
-  className="rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
->
-  <div className="col-span-12 lg:col-span-10">
-    <FormField
-      name="prompt"
-      render={({ field }) => (
-        <FormItem>
-          <FormControl className="m-0 p-0">
-            <Input
-              className="border-0 focus-visible:ring-0 outline-none focus-visible:ring-transparent"
-              disabled={isLoading}
-              placeholder="What is the radius of the earth?"
-              {...field}
-            />
-          </FormControl>
-        </FormItem>
-      )}
-    />
-  </div>
-    <Button className="col-span-12 lg:col-span-2">Submit</Button>
-  
-  
-</form>
+            <form
+              onSubmit={form.handleSubmit(
+                onSubmit,
+              )}
+              className='flex rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm'>
+              <FormField
+                name='prompt'
+                render={({ field }) => (
+                  <FormItem className='col-span-12 lg:col-span-10 w-full'>
+                    <FormControl className='m-0 px-1'>
+                      <Input
+                        className='border-0 rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
+                        disabled={
+                          isLoading
+                        }
+                        placeholder='What is the radius of the earth?'
+                        {...field}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
 
+              <Button
+                type='submit'
+                disabled={isLoading}
+                className={`rounded-none bg-[${colors.sidebarColor}]`}>
+                <SendIcon
+                  color={
+                    colors.messageIcon
+                  }
+                  size={12}
+                />
+              </Button>
+            </form>
           </Form>
+        </div>
+        <div className="space-y-4 mt-4">
+                <h2>Messages Content</h2>                     
         </div>
       </div>
     </div>
