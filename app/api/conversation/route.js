@@ -2,30 +2,21 @@ import { NextResponse } from "next/server";
 import {
   Configuration,
   OpenAIApi,
-} from "openaai";
+} from "openai";
 import { auth } from "@clerk/nextjs";
 
 const configuration = new Configuration(
   {
-    apikey: process.env.OPENAI_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY,
   },
 );
 
 const openai = new OpenAIApi(
-  Configuration,
+  configuration,
 );
 
 export async function POST(req) {
   try {
-    // Check for configuration
-    if (!configuration.apikey) {
-      return new NextResponse(
-        "Configuration APi KEY not configured ",
-        {
-          status: 500,
-        },
-      );
-    }
     // Check for authentication using auth from clerk
     const { userId } = auth();
 
@@ -35,6 +26,16 @@ export async function POST(req) {
         "Unauthorized",
         {
           status: 401,
+        },
+      );
+    }
+
+    // Check for configuration
+    if (!configuration.apiKey) {
+      return new NextResponse(
+        "Configuration APi KEY not configured ",
+        {
+          status: 500,
         },
       );
     }
@@ -62,8 +63,12 @@ export async function POST(req) {
         },
       );
     // Return the response from the API
-    return NextResponse.json(
-      response.data.choices[0].message,
+    return new NextResponse(
+      JSON.stringify(
+        response.data.choices[0][
+          "message"
+        ],
+      ),
       {
         status: 200,
       },
