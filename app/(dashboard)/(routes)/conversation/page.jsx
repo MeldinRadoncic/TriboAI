@@ -69,6 +69,7 @@ const ConversationPage = () => {
       ]);
       form.reset();
     } catch (err) {
+    // TODO: Open pro model
       console.log(err.message);
     } finally {
       router.refresh();
@@ -130,7 +131,13 @@ const ConversationPage = () => {
           </Form>
         </div>
         <div className='space-y-4 mt-4'>
-          <h2>Messages Content</h2>
+          <div className="flex flex-col-reverse gap-y-4">
+                {messages.map((message) => (
+                        <div key={message.content}>
+                            {message.content}
+                        </div>
+                    ))}
+          </div>
         </div>
       </div>
     </div>
