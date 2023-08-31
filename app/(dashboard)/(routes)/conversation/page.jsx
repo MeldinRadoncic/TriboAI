@@ -8,6 +8,8 @@ import {
 import {
   MessageSquare,
   SendIcon,
+  CopyIcon,
+  Copy,
 } from "lucide-react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,8 +18,11 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 import Heading from "@/components/Heading";
+import CopyButton from "@/components/CopyButton";
 import colors from "@/config/colors";
 import formSchema from "./formSchema";
+import Loader from "@/components/Loader";
+import { cn } from "@/lib/utils";
 import {
   Form,
   FormField,
@@ -26,6 +31,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Empty from "@/components/Empty";
+import UserAvatar from "@/components/Avatars/UserAvatar";
+import ChatbotAvatar from "@/components/Avatars/ChatbotAvatar";
 
 const ConversationPage = () => {
   const router = useRouter();
@@ -69,7 +77,7 @@ const ConversationPage = () => {
       ]);
       form.reset();
     } catch (err) {
-    // TODO: Open pro model
+      // TODO: Open pro model
       console.log(err.message);
     } finally {
       router.refresh();
@@ -77,34 +85,98 @@ const ConversationPage = () => {
   };
 
   return (
-    <div>
-      <Heading
-        title='Conversation'
-        description='Chat Smartly with AI Assistance"'
-        icon={
-          <MessageSquare
-            size={24}
-            color={colors.messageIcon}
-          />
-        }
-      />
+    <>
+      <div>
+        <Heading
+          title='Conversation'
+          description='Chat Smartly with TriboAI"'
+          icon={
+            <MessageSquare
+              size={24}
+              color={colors.messageIcon}
+            />
+          }
+        />
 
-      <div className='px-4 lg:px-8'>
-        <div>
+        <div className='px-4 lg:px-8'>
+          <div className='space-y-4 mt-4'>
+            {isLoading && (
+              <div className='flex justify-center'>
+                <div className='rounded-full h-6 w-6'>
+                  <Loader />
+                </div>
+              </div>
+            )}
+            {messages.length === 0 &&
+              !isLoading && (
+                <div>
+                  <Empty label='No Conversations' />
+                </div>
+              )}
+            <div className='flex flex-col gap-y-4'>
+              {messages.map(
+                (message) => (
+                  <>
+                    {message.role !==
+                      "user" && (
+                      <div className='flex justify-end mb-[-8]'>
+                        
+
+                        <CopyButton
+                          textToCopy={
+                            message.content
+                          }
+                        />
+                        </div>
+                    )}
+                    <div
+                      key={
+                        message.content
+                      }
+                      className={cn(
+                        "p-8 w-full flex items-start gap-x-8 rounded-lg",
+                        message.role ===
+                          "user"
+                          ? "bg-white border border-black/10 justify-end"
+                          : `justify-start bg-[#5A9] text-gray-800 md:w-3/4 lg:w-3/4 `,
+                      )}>
+                      {message.role ===
+                      "user" ? (
+                        <UserAvatar />
+                      ) : (
+                        <>
+                          <ChatbotAvatar />
+                        </>
+                      )}
+
+                      <p className='text-sm'>
+                        {
+                          message.content
+                        }
+                      </p>
+                    </div>
+                  </>
+                ),
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className='w-full bottom-0  mt-96 sticky'>
           {/* Creating the form which takes all the props from form constant */}
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(
                 onSubmit,
               )}
-              className='flex rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm'>
+              className='flex justify-around rounded-lg border p-4  md:px-6 focus-within:shadow-sm'>
               <FormField
                 name='prompt'
                 render={({ field }) => (
                   <FormItem className='col-span-12 lg:col-span-10 w-full'>
                     <FormControl className='m-0 px-1'>
                       <Input
-                        className='border-0 rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
+                        className='border-0 w-full rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
                         disabled={
                           isLoading
                         }
@@ -119,7 +191,7 @@ const ConversationPage = () => {
               <Button
                 type='submit'
                 disabled={isLoading}
-                className={`rounded-none bg-[#04162F]`}>
+                className={`rounded-base ml-2 bg-[#04162F]`}>
                 <SendIcon
                   fill={
                     colors.messageIcon
@@ -130,17 +202,8 @@ const ConversationPage = () => {
             </form>
           </Form>
         </div>
-        <div className='space-y-4 mt-4'>
-          <div className="flex flex-col-reverse gap-y-4">
-                {messages.map((message) => (
-                        <div key={message.content}>
-                            {message.content}
-                        </div>
-                    ))}
-          </div>
-        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import {
   OpenAIApi,
 } from "openai";
 import { auth } from "@clerk/nextjs";
+import conversationTemplate from "@/app/AItemplates/conversatio-template";
 
 const configuration = new Configuration(
   {
@@ -43,6 +44,12 @@ export async function POST(req) {
     // Get the body from the request
     const body = await req.json();
     const { messages } = body;
+    const systemMessage = {
+      role: "system",
+      content: conversationTemplate,
+    };
+
+    messages.push(systemMessage);
 
     // Check if the messages are present
     if (!messages) {
