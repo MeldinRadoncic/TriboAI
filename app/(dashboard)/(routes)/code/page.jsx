@@ -152,7 +152,9 @@ const CodePage = () => {
                               ...props
                             }) => (
                               <div
-                                className={`overflow-auto w-full my-2 bg-[${colors.sidebarColor}] text-[${colors.codeIcon}] text-sm p-4 rounded-lg`}>
+                                className={`overflow-auto w-full my-2 text-sm p-4 rounded-lg`}
+                                style={{ backgroundColor: colors.sidebarColor, color:colors.codeIcon }}
+                                >
                                 <pre
                                   {...props}
                                 />
@@ -181,7 +183,7 @@ const CodePage = () => {
           </div>
         </div>
 
-        <div className='sm:w-full md:w-3/4 lg:w-2/4 xl:w-3/4 bottom-0 fixed'>
+        <div className='sm:w-full md:w-2/4 lg:w-3/4 xl:w-3/4 bottom-0 fixed'>
           {/* Creating the form which takes all the props from form constant */}
           <Form {...form}>
             <form
@@ -210,7 +212,9 @@ const CodePage = () => {
               <Button
                 type='submit'
                 disabled={isLoading}
-                className={`rounded-base ml-2 bg-[${colors.sidebarColor}]`}>
+                className={`rounded-base ml-2`}
+                style={{ backgroundColor: colors.sidebarColor }}
+                >
                 <SendIcon
                   fill={
                     colors.messageIcon

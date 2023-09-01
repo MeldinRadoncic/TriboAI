@@ -85,6 +85,8 @@ const ConversationPage = () => {
     }
   };
 
+  
+
   return (
     <>
       <div>
@@ -137,7 +139,7 @@ const ConversationPage = () => {
                         message.role ===
                           "user"
                           ? "bg-white text-sm border border-black/10 justify-start self-end md:w-2/4 lg:w-2/4"
-                          : `justify-start bg-[${colors.messageCloud}] text-sm text-gray-800 md:w-3/4 lg:w-3/4 mb-24`,
+                          : `justify-start bg-[#5A9] text-sm text-gray-800 md:w-3/4 lg:w-3/4 mb-24`,
                       )}>
                       {message.role ===
                       "user" ? (
@@ -161,7 +163,7 @@ const ConversationPage = () => {
           </div>
         </div>
 
-        <div className='w-full md:w-3/4 lg:w-3/4 bottom-0 fixed'>
+        <div className='sm:w-full md:w-2/4 lg:w-3/4 xl:w-3/4 bottom-0 fixed'>
           {/* Creating the form which takes all the props from form constant */}
           <Form {...form}>
             <form
@@ -190,7 +192,9 @@ const ConversationPage = () => {
               <Button
                 type='submit'
                 disabled={isLoading}
-                className={`rounded-base ml-2 bg-[${colors.sidebarColor}]`}>
+                className={`rounded-base ml-2`}
+                style={{ backgroundColor: colors.sidebarColor }}
+                >
                 <SendIcon
                   fill={
                     colors.messageIcon
