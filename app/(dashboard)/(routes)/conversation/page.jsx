@@ -34,6 +34,7 @@ import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import UserAvatar from "@/components/Avatars/UserAvatar";
 import ChatbotAvatar from "@/components/Avatars/ChatbotAvatar";
+import TriboAIWarning from "@/components/TriboAIWarning";
 
 const ConversationPage = () => {
   const router = useRouter();
@@ -89,7 +90,7 @@ const ConversationPage = () => {
       <div>
         <Heading
           title='Conversation'
-          description='Chat Smartly with TriboAI"'
+          description='Chat Smartly with TriboAI'
           icon={
             <MessageSquare
               size={24}
@@ -119,15 +120,13 @@ const ConversationPage = () => {
                   <>
                     {message.role !==
                       "user" && (
-                      <div className='flex justify-end mb-[-8]'>
-                        
-
+                      <div className='flex md:w-3/4 lg:w-3/4 justify-end mb-1'>
                         <CopyButton
                           textToCopy={
                             message.content
                           }
                         />
-                        </div>
+                      </div>
                     )}
                     <div
                       key={
@@ -137,8 +136,8 @@ const ConversationPage = () => {
                         "p-8 w-full flex items-start gap-x-8 rounded-lg",
                         message.role ===
                           "user"
-                          ? "bg-white border border-black/10 justify-end"
-                          : `justify-start bg-[#5A9] text-gray-800 md:w-3/4 lg:w-3/4 `,
+                          ? "bg-white text-sm border border-black/10 justify-start self-end md:w-2/4 lg:w-2/4"
+                          : `justify-start bg-[#5A9] text-sm text-gray-800 md:w-3/4 lg:w-3/4 mb-24`,
                       )}>
                       {message.role ===
                       "user" ? (
@@ -162,14 +161,14 @@ const ConversationPage = () => {
           </div>
         </div>
 
-        <div className='w-full bottom-0  mt-96 sticky'>
+        <div className='w-full lg:w-3/4 bottom-0 fixed'>
           {/* Creating the form which takes all the props from form constant */}
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(
                 onSubmit,
               )}
-              className='flex justify-around rounded-lg border p-4  md:px-6 focus-within:shadow-sm'>
+              className='flex justify-center items-center self-center bg-white rounded-lg border p-4  md:px-6 focus-within:shadow-sm'>
               <FormField
                 name='prompt'
                 render={({ field }) => (
@@ -201,6 +200,12 @@ const ConversationPage = () => {
               </Button>
             </form>
           </Form>
+          <TriboAIWarning
+            warning='TriboAI may produce
+          inaccurate information
+          about people, places, or
+          facts.'
+          />
         </div>
       </div>
     </>

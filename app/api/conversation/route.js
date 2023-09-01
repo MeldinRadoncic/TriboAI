@@ -45,7 +45,7 @@ export async function POST(req) {
     const body = await req.json();
     const { messages } = body;
     const systemMessage = {
-      role: "system",
+      role: "assistant",
       content: conversationTemplate,
     };
 
@@ -66,6 +66,7 @@ export async function POST(req) {
       await openai.createChatCompletion(
         {
           model: "gpt-3.5-turbo",
+          temperature: 0.5,
           messages,
         },
       );

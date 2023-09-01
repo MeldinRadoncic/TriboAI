@@ -19,19 +19,19 @@ const Sidebar = () => {
 
   return (
     <div className={`space-y-4 py-4 flex flex-col h-full bg-[#04162F] text-white`}>
-      <div className='px-3 py-2 flex-1'>
+      <div className='px-4 py-2 flex-1'>
         <Link
           href='/dashboard'
           className='flex items-center pl-3 mb-14'>
-          <div className='relative w-8 h-8 mr-4'>
+          <div className='relative w-8 h-8 mr-2 mt-2'>
             <Image
               src={
-                "/images/appwizardpro.png"
+                "/images/logo.png"
               }
               width={32}
               height={32}
-              alt='AppWizardPro Logo'
-              className='rounded-full'
+              alt='TriboAI Logo'
+              className='rounded-sm'
             />
           </div>
           {/* Use the cn from lib->utils and montserrat font for the logo */}
