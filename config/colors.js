@@ -1,4 +1,4 @@
-export default {
+const colors = {
   dashboardIcon: "skyblue",
   messageIcon: "#EE82EE",
   imageIcon: "#008000",
@@ -7,4 +7,7 @@ export default {
   codeIcon: "#FFA500",
   settingsIcon: "#FFFFFF",
   sidebarColor: "#04162F",
+  messageCloud: "#5A9",
 };
+
+export default colors;

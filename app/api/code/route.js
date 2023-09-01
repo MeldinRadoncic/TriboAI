@@ -4,7 +4,7 @@ import {
   OpenAIApi,
 } from "openai";
 import { auth } from "@clerk/nextjs";
-import conversationTemplate from "@/app/AItemplates/conversatio-template";
+import codeTemplate from "@/app/AItemplates/code-template";
 
 const configuration = new Configuration(
   {
@@ -46,7 +46,7 @@ export async function POST(req) {
     const { messages } = body;
     const systemMessage = {
       role: "assistant",
-      content: conversationTemplate,
+      content: codeTemplate,
     };
 
     messages.push(systemMessage);
@@ -67,7 +67,10 @@ export async function POST(req) {
         {
           model: "gpt-3.5-turbo",
           temperature: 0.5,
-          messages:[systemMessage, ...messages]
+          messages: [
+            systemMessage,
+            ...messages,
+          ],
         },
       );
     // Return the response from the API
@@ -82,10 +85,7 @@ export async function POST(req) {
       },
     );
   } catch (error) {
-    console.log(
-      "CONVERSATION_ERROR: ",
-      error,
-    );
+    console.log("CODE_ERROR: ", error);
     return new NextResponse(
       "Internal Error ",
       {

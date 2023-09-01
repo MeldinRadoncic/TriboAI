@@ -6,15 +6,15 @@ import {
   useForm,
 } from "react-hook-form";
 import {
-  MessageSquare,
+  Code2Icon,
   SendIcon,
   CopyIcon,
-  Copy,
 } from "lucide-react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChatCompletionRequestMessage } from "openai";
 import axios from "axios";
+import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/navigation";
 
 import Heading from "@/components/Heading";
@@ -36,7 +36,7 @@ import UserAvatar from "@/components/Avatars/UserAvatar";
 import ChatbotAvatar from "@/components/Avatars/ChatbotAvatar";
 import TriboAIWarning from "@/components/TriboAIWarning";
 
-const ConversationPage = () => {
+const CodePage = () => {
   const router = useRouter();
   const [messages, setMessages] =
     useState([]);
@@ -65,7 +65,7 @@ const ConversationPage = () => {
       ];
 
       const response = await axios.post(
-        "/api/conversation",
+        "/api/code",
         {
           messages: newMessages,
         },
@@ -89,10 +89,10 @@ const ConversationPage = () => {
     <>
       <div>
         <Heading
-          title='Conversation'
-          description='Chat Smartly with TriboAI'
+          title='Code Generator'
+          description='Generate code from natural language.'
           icon={
-            <MessageSquare
+            <Code2Icon
               size={24}
               color={colors.messageIcon}
             />
@@ -111,23 +111,13 @@ const ConversationPage = () => {
             {messages.length === 0 &&
               !isLoading && (
                 <div>
-                  <Empty label='No Conversations' />
+                  <Empty label='Generate your code' />
                 </div>
               )}
             <div className='flex flex-col gap-y-4'>
               {messages.map(
                 (message) => (
                   <>
-                    {message.role !==
-                      "user" && (
-                      <div className='flex md:w-3/4 lg:w-3/4 justify-end mb-1'>
-                        <CopyButton
-                          textToCopy={
-                            message.content
-                          }
-                        />
-                      </div>
-                    )}
                     <div
                       key={
                         message.content
@@ -137,7 +127,7 @@ const ConversationPage = () => {
                         message.role ===
                           "user"
                           ? "bg-white text-sm border border-black/10 justify-start self-end md:w-2/4 lg:w-2/4"
-                          : `justify-start bg-[${colors.messageCloud}] text-sm text-gray-800 md:w-3/4 lg:w-3/4 mb-24`,
+                          : `justify-start bg-white text-sm text-gray-800 md:w-3/4 lg:w-3/4 mb-24`,
                       )}>
                       {message.role ===
                       "user" ? (
@@ -147,12 +137,42 @@ const ConversationPage = () => {
                           <ChatbotAvatar />
                         </>
                       )}
-
-                      <p className='text-sm'>
-                        {
-                          message.content
-                        }
-                      </p>
+                      <div>
+                        <CopyButton
+                          size={14}
+                          color='red'
+                          textToCopy={
+                            message.content
+                          }
+                        />
+                        <ReactMarkdown
+                          components={{
+                            pre: ({
+                              node,
+                              ...props
+                            }) => (
+                              <div
+                                className={`overflow-auto w-full my-2 bg-[${colors.sidebarColor}] text-[${colors.codeIcon}] text-sm p-4 rounded-lg`}>
+                                <pre
+                                  {...props}
+                                />
+                              </div>
+                            ),
+                            code: ({
+                              node,
+                              ...props
+                            }) => (
+                              <code
+                                className='bg-black/10 rounded-lg p-1'
+                                {...props}
+                              />
+                            ),
+                          }}
+                          className='text-sm leading-7 overflow-hidden'>
+                          {message.content ||
+                            ""}
+                        </ReactMarkdown>
+                      </div>
                     </div>
                   </>
                 ),
@@ -161,25 +181,25 @@ const ConversationPage = () => {
           </div>
         </div>
 
-        <div className='w-full md:w-3/4 lg:w-3/4 bottom-0 fixed'>
+        <div className='sm:w-full md:w-3/4 lg:w-2/4 xl:w-3/4 bottom-0 fixed'>
           {/* Creating the form which takes all the props from form constant */}
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(
                 onSubmit,
               )}
-              className='flex justify-center items-center bg-white rounded-lg border p-4  md:px-6 lg:px-8 focus-within:shadow-sm'>
+              className='flex justify-center items-center w-full  bg-white rounded-lg border p-4  md:px-6 focus-within:shadow-sm'>
               <FormField
                 name='prompt'
                 render={({ field }) => (
                   <FormItem className='col-span-12 lg:col-span-10 w-3/4'>
                     <FormControl className='m-0 px-1'>
                       <Input
-                        className='border-0 rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
+                        className='border-0 rounded-sm focus-visible:ring-0 w-full outline-none focus-visible:ring-transparent'
                         disabled={
                           isLoading
                         }
-                        placeholder='What is the radius of the earth?'
+                        placeholder='What is ReactJS?'
                         {...field}
                       />
                     </FormControl>
@@ -212,4 +232,4 @@ const ConversationPage = () => {
   );
 };
 
-export default ConversationPage;
+export default CodePage;

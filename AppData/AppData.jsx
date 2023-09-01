@@ -38,7 +38,7 @@ const SidebarRoutes = [
   },
   {
     id: 3,
-    name: "Image Generation",
+    name: "Image Generator",
     href: "/image",
     icon: (
       <ImageIcon
@@ -49,7 +49,7 @@ const SidebarRoutes = [
   },
   {
     id: 4,
-    name: "Video Generation",
+    name: "Video Generator",
     href: "/video",
     icon: (
       <VideoIcon
@@ -60,7 +60,7 @@ const SidebarRoutes = [
   },
   {
     id: 5,
-    name: "Music Generation",
+    name: "Music Generator",
     href: "/music",
     icon: (
       <Music2Icon
@@ -71,7 +71,7 @@ const SidebarRoutes = [
   },
   {
     id: 6,
-    name: "Code Generation",
+    name: "Code Generator",
     href: "/code",
     icon: (
       <Code2Icon
@@ -107,7 +107,7 @@ const Tools = [
   },
   {
     id: 2,
-    name: "Image Generation",
+    name: "Image Generator",
     href: "/image",
     icon: (
       <ImageIcon
@@ -118,7 +118,7 @@ const Tools = [
   },
   {
     id: 3,
-    name: "Video Generation",
+    name: "Video Generator",
     href: "/video",
     icon: (
       <VideoIcon
@@ -129,7 +129,7 @@ const Tools = [
   },
   {
     id: 4,
-    name: "Music Generation",
+    name: "Music Generator",
     href: "/music",
     icon: (
       <Music2Icon
@@ -140,7 +140,7 @@ const Tools = [
   },
   {
     id: 5,
-    name: "Code Generation",
+    name: "Code Generator",
     href: "/code",
     icon: (
       <Code2Icon
