@@ -2,12 +2,13 @@ import Image from "next/image";
 
 import colors from "@/config/colors";
 
-const Empty = ({ label }) => {
+const Empty = ({ label, color }) => {
   return (
-    <div className='p-20 h-full flex flex-col justify-center items-center'>
+    <div className='p-13 h-full flex flex-col justify-center opacity-80 items-center'>
       <div className='relative'>
         <h1
-          className={`text-6xl font-extrabold text-[#5A9]/80 mb-2`}>
+          className={`text-6xl font-extrabold  mb-2`}
+          style={color}>
           TriboAI
         </h1>
       </div>

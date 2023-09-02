@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ChatCompletionRequestMessage } from "openai";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
 import { useRouter } from "next/navigation";
 
 import Heading from "@/components/Heading";
@@ -94,7 +95,7 @@ const CodePage = () => {
           icon={
             <Code2Icon
               size={24}
-              color={colors.messageIcon}
+              color={colors.codeIcon}
             />
           }
         />
@@ -103,7 +104,7 @@ const CodePage = () => {
           <div className='space-y-4 mt-4'>
             {isLoading && (
               <div className='flex justify-center'>
-                <div className='rounded-full h-6 w-6'>
+                <div className='rounded-full h-6 w-6 mt-24'>
                   <Loader />
                 </div>
               </div>
@@ -111,7 +112,13 @@ const CodePage = () => {
             {messages.length === 0 &&
               !isLoading && (
                 <div>
-                  <Empty label='Generate your code' />
+                  <Empty
+                    label='Generate your code'
+                    color={{
+                      color:
+                        colors.codeIcon,
+                    }}
+                  />
                 </div>
               )}
             <div className='flex flex-col gap-y-4'>
@@ -138,14 +145,10 @@ const CodePage = () => {
                         </>
                       )}
                       <div>
-                        <CopyButton
-                          size={14}
-                          color='red'
-                          textToCopy={
-                            message.content
-                          }
-                        />
                         <ReactMarkdown
+                          rehypePlugins={[
+                            rehypeHighlight,
+                          ]}
                           components={{
                             pre: ({
                               node,
@@ -153,13 +156,18 @@ const CodePage = () => {
                             }) => (
                               <div
                                 className={`overflow-auto w-full my-2 text-sm p-4 rounded-lg`}
-                                style={{ backgroundColor: colors.sidebarColor, color:colors.codeIcon }}
-                                >
+                                style={{
+                                  backgroundColor:
+                                    colors.sidebarColor,
+                                  color:
+                                    colors.codeIcon,
+                                }}>
                                 <pre
                                   {...props}
                                 />
                               </div>
                             ),
+
                             code: ({
                               node,
                               ...props
@@ -213,12 +221,12 @@ const CodePage = () => {
                 type='submit'
                 disabled={isLoading}
                 className={`rounded-base ml-2`}
-                style={{ backgroundColor: colors.sidebarColor }}
-                >
+                style={{
+                  backgroundColor:
+                    colors.codeIcon,
+                }}>
                 <SendIcon
-                  fill={
-                    colors.messageIcon
-                  }
+                  fill={colors.codeIcon}
                   size={12}
                 />
               </Button>

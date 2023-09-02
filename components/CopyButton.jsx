@@ -6,7 +6,7 @@ import {
 } from "react";
 import { CopyIcon } from "lucide-react";
 
-const CopyButton = ({ textToCopy }) => {
+const CopyButton = ({ textToCopy, size }) => {
   const [isCopied, setIsCopied] =
     useState(false);
 
@@ -42,8 +42,8 @@ const CopyButton = ({ textToCopy }) => {
           <>
             <CopyIcon
               name='Copy'
-              color='black'
-              size={10}
+              color='green'
+              size={size}
             />
           </>
         )}

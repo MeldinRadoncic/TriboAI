@@ -105,15 +105,15 @@ const ConversationPage = () => {
           <div className='space-y-4 mt-4'>
             {isLoading && (
               <div className='flex justify-center'>
-                <div className='rounded-full h-6 w-6'>
-                  <Loader />
+                <div className='rounded-full h-6 w-6 mt-24'>
+                  <Loader message="Processing" />
                 </div>
               </div>
             )}
             {messages.length === 0 &&
               !isLoading && (
                 <div>
-                  <Empty label='No Conversations' />
+                  <Empty label='Chat it Up' color={{color:colors.messageIcon}} />
                 </div>
               )}
             <div className='flex flex-col gap-y-4'>
@@ -124,6 +124,7 @@ const ConversationPage = () => {
                       "user" && (
                       <div className='flex md:w-3/4 lg:w-3/4 justify-end mb-1'>
                         <CopyButton
+                        size={12}
                           textToCopy={
                             message.content
                           }
@@ -193,7 +194,7 @@ const ConversationPage = () => {
                 type='submit'
                 disabled={isLoading}
                 className={`rounded-base ml-2`}
-                style={{ backgroundColor: colors.sidebarColor }}
+                style={{ backgroundColor: colors.messageIcon }}
                 >
                 <SendIcon
                   fill={

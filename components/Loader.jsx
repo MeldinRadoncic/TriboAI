@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const Loader = () => {
+const Loader = ({message = 'Thinking...'}) => {
   return (
     <div className='h-full flex flex-col gap-y-4 items-center justify-center'>
       <div className='w-10 h-10 relative'>
@@ -12,7 +12,7 @@ const Loader = () => {
         />
       </div>
       <p className='text-muted-foreground text-sm text-center animate-pulse'>
-        Thinking...
+        {message}
       </p>
     </div>
   );
