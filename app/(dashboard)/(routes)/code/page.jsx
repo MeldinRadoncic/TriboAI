@@ -203,11 +203,11 @@ const CodePage = () => {
               onSubmit={form.handleSubmit(
                 onSubmit,
               )}
-              className='flex justify-center items-center w-full  bg-white rounded-lg border p-4  md:px-6 focus-within:shadow-sm'>
+              className='flex justify-center items-center w-full md:ml-8 lg:w-3/4 lg:ml-36 rounded-lg border p-4  md:px-6 lg:px-8 focus-within:shadow-sm'>
               <FormField
                 name='prompt'
                 render={({ field }) => (
-                  <FormItem className='col-span-12 lg:col-span-10 w-3/4'>
+                  <FormItem className='col-span-12 lg:col-span-10 w-full'>
                     <FormControl className='m-0 px-1'>
                       <Input
                         className='border-0 rounded-sm focus-visible:ring-0 w-full outline-none focus-visible:ring-transparent'
