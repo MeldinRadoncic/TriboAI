@@ -4,8 +4,8 @@ import colors from "@/config/colors";
 
 const Empty = ({ label, color }) => {
   return (
-    <div className='p-13 h-full flex flex-col justify-center opacity-80 items-center'>
-      <div className='relative'>
+    <div className='p-13 h-full flex flex-col justify-center opacity-60 items-center'>
+      <div className='relative flex justify-center items-center'>
         <h1
           className={`text-6xl font-extrabold  mb-2`}
           style={color}>

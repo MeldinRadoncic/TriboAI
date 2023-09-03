@@ -103,8 +103,12 @@ const CodePage = () => {
         <div className='px-4 lg:px-8'>
           <div className='space-y-4 mt-4'>
             {isLoading && (
-              <div className='flex justify-center'>
-                <div className='rounded-full h-6 w-6 mt-24'>
+              <div className='flex justify-center top-0 bottom-0 left-0 right-0 fixed'
+              style={{backgroundColor: colors.sidebarColor, opacity: 0.7, zIndex: "100" }}
+              
+              
+              >
+                <div className=' rounded-full  md:ml-72'>
                   <Loader />
                 </div>
               </div>
@@ -121,7 +125,7 @@ const CodePage = () => {
                   />
                 </div>
               )}
-            <div className='flex flex-col gap-y-4'>
+            <div className='flex flex-col gap-y-2'>
               {messages.map(
                 (message) => (
                   <>
@@ -134,7 +138,7 @@ const CodePage = () => {
                         message.role ===
                           "user"
                           ? "bg-white text-sm border border-black/10 justify-start self-end md:w-2/4 lg:w-2/4"
-                          : `justify-start bg-white text-sm text-gray-800 md:w-3/4 lg:w-3/4 mb-24`,
+                          : `justify-start bg-white text-sm text-gray-800 md:w-3/4 lg:w-3/4 last:mb-36`,
                       )}>
                       {message.role ===
                       "user" ? (
@@ -142,9 +146,10 @@ const CodePage = () => {
                       ) : (
                         <>
                           <ChatbotAvatar />
+                        
                         </>
                       )}
-                      <div>
+                      <div className="overflow-hidden">
                         <ReactMarkdown
                           rehypePlugins={[
                             rehypeHighlight,
@@ -155,7 +160,7 @@ const CodePage = () => {
                               ...props
                             }) => (
                               <div
-                                className={`overflow-auto w-full my-2 text-sm p-4 rounded-lg`}
+                                className={`overflow-hidden w-full my-2 text-xs  p-4 rounded-lg`}
                                 style={{
                                   backgroundColor:
                                     colors.sidebarColor,
