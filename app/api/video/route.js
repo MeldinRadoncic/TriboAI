@@ -43,9 +43,12 @@ export async function POST(req) {
       {
         input: {
           prompt: prompt,
+          
         }
       }
     );
+
+    console.log("VIDEO_RESPONSE: ", response);
 
     // Return the response from the API
     return new NextResponse(
