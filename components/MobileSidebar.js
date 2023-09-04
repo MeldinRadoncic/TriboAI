@@ -7,7 +7,7 @@ import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Sidebar from "@/components/Sidebar";
 
-const MobileSidebar = () => {
+const MobileSidebar = ({ apiLimitCount }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     // Fix Hydration error
@@ -31,7 +31,7 @@ const MobileSidebar = () => {
       </Button>
         </SheetTrigger>
         <SheetContent side='left' className='p-0'>
-        <Sidebar />
+        <Sidebar apiLimitCount={apiLimitCount}/>
        </SheetContent>
     </Sheet>
   );
