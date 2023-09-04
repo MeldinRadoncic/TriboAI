@@ -3,7 +3,7 @@ import {
   Configuration,
   OpenAIApi,
 } from "openai";
-import { auth } from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs";
 import conversationTemplate from "@/app/AItemplates/conversatio-template";
 import {
   increaseAPILimit,
@@ -24,6 +24,15 @@ export async function POST(req) {
   try {
     // Check for authentication using auth from clerk
     const { userId } = auth();
+    const user  = await currentUser();
+
+    const currentUserInfo = {
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+      gender: user?.gender,
+      birthday: user?.birthday,
+      email: user?.emailAddresses[0]?.emailAddress,
+    }
 
     // Check if the user is authenticated
     if (!userId) {
@@ -50,10 +59,11 @@ export async function POST(req) {
     const { messages } = body;
     const systemMessage = {
       role: "assistant",
-      content: conversationTemplate,
+      content: conversationTemplate(currentUserInfo)
     };
 
     messages.push(systemMessage);
+
 
     // Check if the messages are present
     if (!messages) {

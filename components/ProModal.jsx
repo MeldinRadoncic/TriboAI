@@ -30,10 +30,6 @@ const ProModal = () => {
       const response = await axios.get(
         "/api/stripe",
       );
-      console.log(
-        "STRIPE_CLIENT_RESPONSE: ",
-        response,
-      );
 
       // Redirect to Checkout.
       window.location.href =
