@@ -23,6 +23,8 @@ import colors from "@/config/colors";
 import formSchema from "./formSchema";
 import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
+import useProModal from "@/hook/use-pro-modal";
+
 import {
   Form,
   FormField,
@@ -36,8 +38,11 @@ import UserAvatar from "@/components/Avatars/UserAvatar";
 import ChatbotAvatar from "@/components/Avatars/ChatbotAvatar";
 import TriboAIWarning from "@/components/TriboAIWarning";
 
+
 const ConversationPage = () => {
   const router = useRouter();
+
+  const proModal = useProModal();
   const [messages, setMessages] =
     useState([]);
   // Use the form schema to create a form with react-hook-form
@@ -78,14 +83,14 @@ const ConversationPage = () => {
       ]);
       form.reset();
     } catch (err) {
-      // TODO: Open pro model
+      if(err?.response?.status === 403) {
+        proModal.onOpen();
+      }
       console.log(err.message);
     } finally {
       router.refresh();
     }
   };
-
-  
 
   return (
     <>
@@ -103,12 +108,15 @@ const ConversationPage = () => {
 
         <div className='px-4 lg:px-8'>
           <div className='space-y-4 mt-4'>
-          {isLoading && (
-              <div className='flex justify-center top-0 bottom-0 left-0 right-0 fixed'
-              style={{backgroundColor: colors.sidebarColor, opacity: 0.7, zIndex: "100" }}
-              
-              
-              >
+            {isLoading && (
+              <div
+                className='flex justify-center top-0 bottom-0 left-0 right-0 fixed'
+                style={{
+                  backgroundColor:
+                    colors.sidebarColor,
+                  opacity: 0.7,
+                  zIndex: "100",
+                }}>
                 <div className=' rounded-full  md:ml-72'>
                   <Loader />
                 </div>
@@ -117,7 +125,13 @@ const ConversationPage = () => {
             {messages.length === 0 &&
               !isLoading && (
                 <div>
-                  <Empty label='Chat it Up' color={{color:colors.messageIcon}} />
+                  <Empty
+                    label='Chat it Up'
+                    color={{
+                      color:
+                        colors.messageIcon,
+                    }}
+                  />
                 </div>
               )}
             <div className='flex flex-col gap-y-4'>
@@ -128,7 +142,7 @@ const ConversationPage = () => {
                       "user" && (
                       <div className='flex md:w-3/4 lg:w-3/4 justify-end mb-1'>
                         <CopyButton
-                        size={12}
+                          size={12}
                           textToCopy={
                             message.content
                           }
@@ -144,7 +158,7 @@ const ConversationPage = () => {
                         message.role ===
                           "user"
                           ? "bg-white text-sm border border-black/10 justify-start self-end md:w-2/4 lg:w-2/4"
-                          : `justify-start bg-[#5A9] text-sm text-gray-800 md:w-3/4 lg:w-3/4 mb-24`,
+                          : `justify-start bg-[#5A9] text-sm text-gray-800 md:w-3/4 lg:w-3/4 last:mb-36`,
                       )}>
                       {message.role ===
                       "user" ? (
@@ -198,8 +212,10 @@ const ConversationPage = () => {
                 type='submit'
                 disabled={isLoading}
                 className={`rounded-base ml-2`}
-                style={{ backgroundColor: colors.messageIcon }}
-                >
+                style={{
+                  backgroundColor:
+                    colors.messageIcon,
+                }}>
                 <SendIcon
                   fill={
                     colors.messageIcon

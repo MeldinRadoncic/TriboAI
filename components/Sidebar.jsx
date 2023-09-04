@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { SidebarRoutes } from "@/AppData/AppData";
 import colors from "@/config/colors";
+import FreeCounter from "./FreeCounter";
 
 // Use the montserrat font for the logo
 const montserrat = Montserrat({
@@ -14,12 +15,18 @@ const montserrat = Montserrat({
   weights: [400, 700],
 });
 
-const Sidebar = () => {
+const Sidebar = ({
+  apiLimitCount = 0,
+}) => {
   const pathname = usePathname();
 
   return (
     <div
-      className={`space-y-4 py-4 flex flex-col h-full  text-white`} style={{ backgroundColor: colors.sidebarColor }}>
+      className={`space-y-4 py-4 flex flex-col h-full  text-white`}
+      style={{
+        backgroundColor:
+          colors.sidebarColor,
+      }}>
       <div className='px-4 py-2 flex-1'>
         <Link
           href='/dashboard'
@@ -62,7 +69,7 @@ const Sidebar = () => {
                   <div className='w-6 h-6 flex items-center justify-center mr-2'>
                     {route.icon}
                   </div>
-                  <span className=''>
+                  <span>
                     {route.name}
                   </span>
                 </div>
@@ -71,6 +78,9 @@ const Sidebar = () => {
           )}
         </div>
       </div>
+      <FreeCounter
+        apiLimitCount={apiLimitCount}
+      />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
 import { auth } from "@clerk/nextjs";
+import { increaseAPILimit, checkAPILimit } from "@/lib/api-limit";
 
 const replicate = new Replicate({
   auth:
@@ -37,6 +38,20 @@ export async function POST(req) {
       );
     }
 
+     // Check if the user has a Free Trial
+     const freeTrial =
+     await checkAPILimit(); 
+
+   // If the user is not on free trial, return the status code 403
+   if (!freeTrial) {
+     return new NextResponse(
+       "Free Trial Limit Exceeded",
+       {
+         status: 403,
+       },
+     );
+   }
+
     //  Send the prompt to the API
     const response = await replicate.run(
       "anotherjesse/zeroscope-v2-xl:9f747673945c62801b13b84701c783929c0ee784e4748ec062204894dda1a351",
@@ -48,7 +63,9 @@ export async function POST(req) {
       }
     );
 
-    console.log("VIDEO_RESPONSE: ", response);
+
+      // Increment the API Limit
+      await increaseAPILimit();
 
     // Return the response from the API
     return new NextResponse(

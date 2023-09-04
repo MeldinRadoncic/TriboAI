@@ -5,7 +5,10 @@ import {
 } from "openai";
 import { auth } from "@clerk/nextjs";
 import conversationTemplate from "@/app/AItemplates/conversatio-template";
-import { increaseAPILimit, checkAPILimit } from "@/lib/api-limit";
+import {
+  increaseAPILimit,
+  checkAPILimit,
+} from "@/lib/api-limit";
 
 const configuration = new Configuration(
   {
@@ -64,7 +67,7 @@ export async function POST(req) {
 
     // Check if the user has a Free Trial
     const freeTrial =
-      await checkAPILimit(); 
+      await checkAPILimit();
 
     // If the user is not on free trial, return the status code 403
     if (!freeTrial) {
@@ -82,7 +85,10 @@ export async function POST(req) {
         {
           model: "gpt-3.5-turbo",
           temperature: 0.5,
-          messages:[systemMessage, ...messages]
+          messages: [
+            systemMessage,
+            ...messages,
+          ],
         },
       );
 

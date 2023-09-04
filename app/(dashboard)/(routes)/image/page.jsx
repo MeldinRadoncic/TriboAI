@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 
 import Heading from "@/components/Heading";
 import colors from "@/config/colors";
+import useProModal from "@/hook/use-pro-modal";
 import {
   formSchema,
   amountOptions,
@@ -47,6 +48,7 @@ import {
 
 const ImagePage = () => {
   const router = useRouter();
+  const proModal = useProModal();
   const [images, setImages] = useState(
     [],
   );
@@ -79,7 +81,10 @@ const ImagePage = () => {
 
       form.reset();
     } catch (err) {
-      // TODO: Open pro model
+      // If the error is 403, open the pro modal
+      if(err?.response?.status === 403) {
+        proModal.onOpen();
+      }
       console.log(err.message);
     } finally {
       router.refresh();

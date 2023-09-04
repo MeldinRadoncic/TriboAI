@@ -5,6 +5,8 @@ import {
 } from "openai";
 import { auth } from "@clerk/nextjs";
 import codeTemplate from "@/app/AItemplates/code-template";
+import { increaseAPILimit, checkAPILimit } from "@/lib/api-limit";
+
 
 const configuration = new Configuration(
   {
@@ -61,6 +63,20 @@ export async function POST(req) {
       );
     }
 
+     // Check if the user has a Free Trial
+     const freeTrial =
+     await checkAPILimit(); 
+
+   // If the user is not on free trial, return the status code 403
+   if (!freeTrial) {
+     return new NextResponse(
+       "Free Trial Limit Exceeded",
+       {
+         status: 403,
+       },
+     );
+   }
+
     //  Send the messages to the OpenAI API
     const response =
       await openai.createChatCompletion(
@@ -73,6 +89,10 @@ export async function POST(req) {
           ],
         },
       );
+
+    // Increase the API limit
+    await increaseAPILimit();
+
     // Return the response from the API
     return new NextResponse(
       JSON.stringify(

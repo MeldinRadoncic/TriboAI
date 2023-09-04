@@ -20,6 +20,7 @@ import CopyButton from "@/components/CopyButton";
 import colors from "@/config/colors";
 import formSchema from "./formSchema";
 import Loader from "@/components/Loader";
+import useProModal from "@/hook/use-pro-modal";
 import {
   Form,
   FormField,
@@ -33,6 +34,7 @@ import TriboAIWarning from "@/components/TriboAIWarning";
 
 const MusicPage = () => {
   const router = useRouter();
+  const proModal = useProModal();
   const [music, setMusic] = useState();
   const [imageUrl, setImageUrl] =
     useState();
@@ -61,7 +63,10 @@ const MusicPage = () => {
       );
       form.reset();
     } catch (err) {
-      // TODO: Open pro model
+      // if is not a free trial, open the pro modal
+      if(err?.response?.status === 403) {
+        proModal.onOpen();
+      }
       console.log(err.message);
     } finally {
       router.refresh();

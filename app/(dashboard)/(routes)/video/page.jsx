@@ -19,6 +19,7 @@ import Heading from "@/components/Heading";
 import colors from "@/config/colors";
 import formSchema from "./formSchema";
 import Loader from "@/components/Loader";
+import useProModal from "@/hook/use-pro-modal";
 import {
   Form,
   FormField,
@@ -32,6 +33,7 @@ import TriboAIWarning from "@/components/TriboAIWarning";
 
 const VideoPage = () => {
   const router = useRouter();
+  const proModal = useProModal();
   const [video, setVideo] = useState();
   
   // Use the form schema to create a form with react-hook-form
@@ -57,7 +59,10 @@ const VideoPage = () => {
 
       form.reset();
     } catch (err) {
-      // TODO: Open pro model
+      // If the error is 403 which is no free trial, open the pro modal
+      if(err?.response?.status === 403) {
+        proModal.onOpen();
+      }
       console.log(err.message);
     } finally {
       router.refresh();
