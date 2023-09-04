@@ -11,12 +11,13 @@ export async function GET() {
     try{
         const { userId } = auth();
         // Get the userId and User obj from Clerk
-        const { user } = await currentUser();
+        const  user  = await currentUser();
 
         // If the user is not logged in, send Unauthorized
-        if (!userId || !user) {
-            return new NextResponse('Unauthorized', { status: 401 })
-        }
+         if (!userId || !user) {
+             console.log('UNAUTHORIZED FOR STRIPE')
+             return new NextResponse('Unauthorized', { status: 401 })
+         }
 
         // Find the user subscription based on current user id
         const userSubscription = await prisma_db.userSubscription.findUnique({

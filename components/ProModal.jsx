@@ -20,22 +20,31 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ProModal = () => {
-  
   const proModal = useProModal();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] =
+    useState(false);
 
   const onSubscribe = async () => {
-    try{
-      setLoading(true)
-      const response = await axios.get("/api/stripe")
-      console.lo("STRIPE_CLIENT_RESPONSE: ", response)
-      // Redirect to Checkout.
-      window.location.href = await response.data.url;
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        "/api/stripe",
+      );
+      console.log(
+        "STRIPE_CLIENT_RESPONSE: ",
+        response,
+      );
 
-    }catch(err){
-      console.log("STRIPE_CLIENT_ERROR: ", err.message)
-    }finally{
-      setLoading(false)
+      // Redirect to Checkout.
+      window.location.href =
+        response.data.url;
+    } catch (err) {
+      console.log(
+        "STRIPE_CLIENT_ERROR: ",
+        err.message,
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,13 +83,13 @@ const ProModal = () => {
           </DialogDescription>
           <DialogFooter>
             <Button
+              disabled={loading}
               size='lg'
               variant='premium'
               onClick={onSubscribe}
               className='w-full mt-8 border-0'>
               Upgrade
-               <Zap className='w-4 h-4 ml-2 fill-white'/> 
-              
+              <Zap className='w-4 h-4 ml-2 fill-white' />
             </Button>
           </DialogFooter>
         </DialogHeader>
