@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+
 import {
-  set,
+  
   useForm,
 } from "react-hook-form";
 import {
@@ -124,7 +125,8 @@ const ConversationPage = () => {
             )}
             {messages.length === 0 &&
               !isLoading && (
-                <div>
+                <div className="w-full  h-96">
+                  
                   <Empty
                     label='Chat it Up'
                     color={{

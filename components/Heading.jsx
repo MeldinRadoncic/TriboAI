@@ -9,10 +9,10 @@ const Heading = ({ title, description, icon }) => {
          { icon }
         </div>
         <div>
-            <h2 className='text-3xl font-bold'>
+            <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold'>
                 {title}
-            </h2>
-            <p className='text-sm text-muted-foreground'>
+            </h1>
+            <p className='text-base md:text-lg lg:text-xl text-muted-foreground'>
                 {description}
             </p>
 

@@ -104,7 +104,7 @@ const MusicPage = () => {
               </div>
             )}
             {!music && !isLoading && (
-              <div>
+              <div className="w-full h-96">
                 <Empty
                   label='Turn your thoughts into music'
                   color={{

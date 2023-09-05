@@ -69,7 +69,7 @@ const Sidebar = ({
                   <div className='w-6 h-6 flex items-center justify-center mr-2'>
                     {route.icon}
                   </div>
-                  <span>
+                  <span className="text-sm md:text-base lg:text-lg xl:text-lg">
                     {route.name}
                   </span>
                 </div>

@@ -125,7 +125,7 @@ const CodePage = () => {
             )}
             {messages.length === 0 &&
               !isLoading && (
-                <div>
+                <div className="w-full h-96">
                   <Empty
                     label='Generate your code'
                     color={{
