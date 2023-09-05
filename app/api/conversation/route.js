@@ -9,6 +9,7 @@ import {
   increaseAPILimit,
   checkAPILimit,
 } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 const configuration = new Configuration(
   {
@@ -79,8 +80,11 @@ export async function POST(req) {
     const freeTrial =
       await checkAPILimit();
 
+      // Check if the user has a subscription
+      const isPro = await checkSubscription();
+
     // If the user is not on free trial, return the status code 403
-    if (!freeTrial) {
+    if (!freeTrial && !isPro) {
       return new NextResponse(
         "Free Trial Limit Exceeded",
         {
@@ -102,8 +106,11 @@ export async function POST(req) {
         },
       );
 
-    // Increase the API limit for the user
-    await increaseAPILimit();
+    // Increase the API limit for the user if the user is on free trial
+    if(!isPro){
+      await increaseAPILimit();
+
+    }
     // Return the response from the API
     return new NextResponse(
       JSON.stringify(

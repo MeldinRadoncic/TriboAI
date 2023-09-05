@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import Replicate from "replicate";
 import { auth } from "@clerk/nextjs";
 import { increaseAPILimit, checkAPILimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 const replicate = new Replicate({
   auth:
@@ -42,8 +43,11 @@ export async function POST(req) {
      const freeTrial =
      await checkAPILimit(); 
 
+      // Check if the user is on Pro trial
+      const isPro = await checkSubscription();
+
    // If the user is not on free trial, return the status code 403
-   if (!freeTrial) {
+   if (!freeTrial && !isPro) {
      return new NextResponse(
        "Free Trial Limit Exceeded",
        {
@@ -64,7 +68,10 @@ export async function POST(req) {
       );
 
     // Increment the API limit for the user
-    await increaseAPILimit();
+    if(!isPro){
+
+      await increaseAPILimit();
+    }
 
     // Return the response from the API
     return new NextResponse(

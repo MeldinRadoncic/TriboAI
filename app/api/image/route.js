@@ -6,6 +6,7 @@ import {
 import { auth } from "@clerk/nextjs";
 import conversationTemplate from "@/app/AItemplates/conversatio-template";
 import { increaseAPILimit, checkAPILimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 const configuration = new Configuration(
   {
@@ -64,8 +65,11 @@ export async function POST(req) {
      const freeTrial =
      await checkAPILimit(); 
 
+     // Check if the user is on Pro Plan
+      const isPro = await checkSubscription();
+
    // If the user is not on free trial, return the status code 403
-   if (!freeTrial) {
+   if (!freeTrial && !isPro) {
      return new NextResponse(
        "Free Trial Limit Exceeded",
        {
@@ -83,7 +87,9 @@ export async function POST(req) {
       });
 
       // Increase the API Limit
-      await increaseAPILimit();
+      if(!isPro){
+        await increaseAPILimit();
+      }
 
     // Return the response from the API
     return new NextResponse(

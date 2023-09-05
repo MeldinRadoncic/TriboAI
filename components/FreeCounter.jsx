@@ -16,6 +16,7 @@ import { Button } from "./ui/button";
 import useProModal from "@/hook/use-pro-modal";
 const FreeCounter = ({
   apiLimitCount = 0,
+  isPro = false,
 }) => {
 
     const proModal = useProModal();
@@ -27,6 +28,8 @@ const FreeCounter = ({
    useEffect(() => setMounted(true), []);
    if (!mounted) return null;
 
+  // If the user is on a Pro plan, don't show the free counter
+  if (isPro) return null;
 
   return (
     <div className='px-3'>

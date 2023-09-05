@@ -17,6 +17,7 @@ const montserrat = Montserrat({
 
 const Sidebar = ({
   apiLimitCount = 0,
+  isPro = false,
 }) => {
   const pathname = usePathname();
 
@@ -80,6 +81,7 @@ const Sidebar = ({
       </div>
       <FreeCounter
         apiLimitCount={apiLimitCount}
+        isPro={isPro}
       />
     </div>
   );

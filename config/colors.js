@@ -5,7 +5,7 @@ const colors = {
   videoIcon: "#FF0000",
   musicIcon: "#800080",
   codeIcon: "#FFA500",
-  settingsIcon: "#FFFFFF",
+  settingsIcon: "gray",
   sidebarColor: "#04162F",
   
 };
