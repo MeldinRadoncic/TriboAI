@@ -44,16 +44,17 @@ const Loader = () => {
 
   return (
     <div className='h-screen flex flex-col gap-y-4 items-center justify-center'>
-      <div className='w-12 h-12 relative '>
+      <div className='relative '>
         <Image
           src='/images/logo-transparent.png'
           alt='Logo'
           width={80}
           height={80}
+          className='-rotate-12 z-50'
         />
       </div>
 
-      <p className='text-white text-sm text-center animate-bounce'>
+      <p className='text-white text-sm md:text-base text-center animate-bounce'>
         {message}
       </p>
 

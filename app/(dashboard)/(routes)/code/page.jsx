@@ -37,6 +37,7 @@ import UserAvatar from "@/components/Avatars/UserAvatar";
 import ChatbotAvatar from "@/components/Avatars/ChatbotAvatar";
 import TriboAIWarning from "@/components/TriboAIWarning";
 import useProModal from "@/hook/use-pro-modal";
+import { toast } from "react-hot-toast";
 
 const CodePage = () => {
   const router = useRouter();
@@ -56,7 +57,7 @@ const CodePage = () => {
 
   const onSubmit = async (values) => {
     try {
-      //
+      // Create a new message object
       const userMessage = {
         role: "user",
         content: values.prompt,
@@ -86,6 +87,13 @@ const CodePage = () => {
         err?.response?.status === 403
       ) {
         proModal.onOpen();
+      }else{
+        toast.error("Oops! Something went wrong.",{
+          style: {
+            backgroundColor: colors.sidebarColor,
+            color: "white",
+          },
+        })
       }
       console.log(err.message);
     } finally {

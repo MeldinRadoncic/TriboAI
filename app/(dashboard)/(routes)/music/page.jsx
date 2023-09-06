@@ -31,6 +31,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import TriboAIWarning from "@/components/TriboAIWarning";
+import { toast } from "react-hot-toast";
 
 const MusicPage = () => {
   const router = useRouter();
@@ -66,6 +67,13 @@ const MusicPage = () => {
       // if is not a free trial, open the pro modal
       if(err?.response?.status === 403) {
         proModal.onOpen();
+      }else{
+        toast.error("Oops! Something went wrong.",{
+          style:{
+            backgroundColor: colors.sidebarColor,
+            color: "white",
+          }
+        });
       }
       console.log(err.message);
     } finally {
@@ -151,6 +159,7 @@ const MusicPage = () => {
                   <FormItem className='col-span-12 lg:col-span-10 w-full'>
                     <FormControl className='m-0 px-1'>
                       <Input
+                      required
                         className='border-0 rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
                         disabled={
                           isLoading

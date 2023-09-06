@@ -2,10 +2,7 @@
 
 import { useState } from "react";
 
-import {
-  
-  useForm,
-} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
   MessageSquare,
   SendIcon,
@@ -32,13 +29,14 @@ import {
   FormItem,
   FormControl,
 } from "@/components/ui/form";
+import { toast } from "react-hot-toast";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import UserAvatar from "@/components/Avatars/UserAvatar";
 import ChatbotAvatar from "@/components/Avatars/ChatbotAvatar";
 import TriboAIWarning from "@/components/TriboAIWarning";
-
 
 const ConversationPage = () => {
   const router = useRouter();
@@ -59,7 +57,7 @@ const ConversationPage = () => {
 
   const onSubmit = async (values) => {
     try {
-      //
+      // Create a new message object
       const userMessage = {
         role: "user",
         content: values.prompt,
@@ -84,8 +82,21 @@ const ConversationPage = () => {
       ]);
       form.reset();
     } catch (err) {
-      if(err?.response?.status === 403) {
+      if (
+        err?.response?.status === 403
+      ) {
         proModal.onOpen();
+      } else {
+        toast.error(
+          "Oops! Something went wrong.",
+          {
+            style: {
+              backgroundColor:
+                colors.sidebarColor,
+              color: "white",
+            },
+          },
+        );
       }
       console.log(err.message);
     } finally {
@@ -125,8 +136,7 @@ const ConversationPage = () => {
             )}
             {messages.length === 0 &&
               !isLoading && (
-                <div className="w-full  h-96">
-                  
+                <div className='w-full  h-96'>
                   <Empty
                     label='Chat it Up'
                     color={{
@@ -198,6 +208,7 @@ const ConversationPage = () => {
                   <FormItem className='col-span-12 lg:col-span-10 w-full'>
                     <FormControl className='m-0 px-1'>
                       <Input
+                      required
                         className='border-0 rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
                         disabled={
                           isLoading

@@ -45,6 +45,7 @@ import {
   Card,
   CardFooter,
 } from "@/components/ui/card";
+import { toast } from "react-hot-toast";
 
 const ImagePage = () => {
   const router = useRouter();
@@ -68,7 +69,6 @@ const ImagePage = () => {
   const onSubmit = async (values) => {
     setImages([]);
     try {
-      console.log(values);
       const response = await axios.post(
         "/api/image",
         values,
@@ -84,6 +84,13 @@ const ImagePage = () => {
       // If the error is 403, open the pro modal
       if(err?.response?.status === 403) {
         proModal.onOpen();
+      }else{
+        toast.error("Oops, something went wrong!",{
+          style: {
+            background: colors.sidebarColor,
+            color: "white",
+          }
+        })
       }
       console.log(err.message);
     } finally {
@@ -121,6 +128,7 @@ const ImagePage = () => {
                   <FormItem className='col-span-12 lg:col-span-10 w-3/4'>
                     <FormControl className='m-0 px-1'>
                       <Input
+                      required
                         className='border-0 rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
                         disabled={
                           isLoading
@@ -264,10 +272,18 @@ const ImagePage = () => {
 
         <div className='px-4 lg:px-8'>
           <div className='space-y-4 mt-4'>
-            {isLoading && (
-              <div className='flex justify-center items-center'>
-                <div className='rounded-full h-6  mt-6'>
-                  <Loader message="Hmm, let's see..." />
+          {isLoading && (
+              <div
+                className='flex justify-center top-0 bottom-0 left-0 right-0 fixed'
+                style={{
+                  backgroundColor:
+                    colors.sidebarColor,
+                  opacity: 0.7,
+                  zIndex: "100",
+                  
+                }}>
+                <div className=' rounded-full  md:ml-72'>
+                  <Loader />
                 </div>
               </div>
             )}

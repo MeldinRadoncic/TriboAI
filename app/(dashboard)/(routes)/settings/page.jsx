@@ -23,14 +23,23 @@ const SettingsPage = async () => {
       />
 
       <div className='px-4 lg:px-8 space-y-4'>
-        <div className='text-muted-foreground text-sm'>
+        <div className='text-muted-foreground'>
           {isPro
-            ? "You are on a Pro Plan"
-            : "You are on a Free Trial"}
+            ? <div className='w-full flex justify-center items-center my-4'>
+            <p className="text-xl my-8">You are on a Pro Plan</p>
+         </div>
+            :(
+              <div className='w-full flex justify-center items-center my-4'>
+                 <p className="text-xl my-8">You are on a FREE trial</p>
+              </div>
+            )}
         </div>
+        <div className="w-full flex justify-center items-center">
         <SubscriptionButton
           isPro={isPro}
         />
+
+        </div>
       </div>
     </div>
   );
