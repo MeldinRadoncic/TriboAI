@@ -14,19 +14,18 @@ import { MAX_FREE_COUNTS } from "@/constants";
 import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 import useProModal from "@/hook/use-pro-modal";
+
 const FreeCounter = ({
   apiLimitCount = 0,
   isPro = false,
 }) => {
+  const proModal = useProModal();
 
-    const proModal = useProModal();
-      
-
-//   // Avoid the Hydration Mismatch error by using useState
-   const [mounted, setMounted] =
-     useState(false);
-   useEffect(() => setMounted(true), []);
-   if (!mounted) return null;
+  //   // Avoid the Hydration Mismatch error by using useState
+  const [mounted, setMounted] =
+    useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
 
   // If the user is on a Pro plan, don't show the free counter
   if (isPro) return null;
@@ -53,8 +52,7 @@ const FreeCounter = ({
           <Button
             className='w-full'
             variant='premium'
-            onClick={proModal.onOpen}
-            >
+            onClick={proModal.onOpen}>
             Upgrade
             <Zap className='w-4 h-4 ml-2 fill-white' />
           </Button>

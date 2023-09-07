@@ -1,6 +1,13 @@
 import Image from "next/image";
+import { Montserrat } from "next/font/google";
 
 import colors from "@/config/colors";
+import { cn } from "@/lib/utils";
+
+const font = Montserrat({
+  weights: [400, 700],
+  subsets: ["latin"],
+});
 
 const Empty = ({ label, color }) => {
   return (
@@ -14,7 +21,7 @@ const Empty = ({ label, color }) => {
           className="absolute mb-24 z-0 -rotate-12"
         />
         <h1
-          className={`text-6xl font-extrabold  mb-2`}
+          className={cn("text-6xl font-extrabold  mb-2", font.className)}
           style={color}>
           TriboAI
         </h1>

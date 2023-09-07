@@ -144,7 +144,7 @@ const Tools = [
     href: "/code",
     icon: (
       <Code2Icon
-        size={24}
+        size={24 || size}
         color={colors.codeIcon}
       />
     ),
