@@ -152,14 +152,14 @@ const MusicPage = () => {
           </div>
         </div>
 
-        <div className='sm:w-full md:w-2/4 md:ml-12 lg:w-3/4 xl:w-3/4 absolute bottom-20 md:bottom-24 lg:bottom-24 xl:bottom-24 '>
+        <div className='w-full xl:w-3/4 mx-auto xl:mx-24 pb-16 md:pb-24 lg:pb-24 xl:pb-24 overflow-hidden'>
           {/* Creating the form which takes all the props from form constant */}
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(
                 onSubmit,
               )}
-              className='flex justify-center items-center md:ml-8 lg:w-3/4 lg:ml-36 rounded-lg border p-4  md:px-6 lg:px-8 focus-within:shadow-sm'>
+              className='flex justify-center items-center md:ml-8 lg:w-full rounded-lg border p-4  md:px-6 lg:px-12 focus-within:shadow-sm bg-red-800'>
               <FormField
                 name='prompt'
                 render={({ field }) => (

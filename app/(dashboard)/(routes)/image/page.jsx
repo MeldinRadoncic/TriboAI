@@ -47,6 +47,7 @@ import {
 } from "@/components/ui/card";
 import { toast } from "react-hot-toast";
 import Meta from "@/components/SEO/Meta";
+import { CopyRight } from "@/components/Copyright";
 
 const ImagePage = () => {
   const router = useRouter();
@@ -83,15 +84,21 @@ const ImagePage = () => {
       form.reset();
     } catch (err) {
       // If the error is 403, open the pro modal
-      if(err?.response?.status === 403) {
+      if (
+        err?.response?.status === 403
+      ) {
         proModal.onOpen();
-      }else{
-        toast.error("Oops, something went wrong!",{
-          style: {
-            background: colors.sidebarColor,
-            color: "white",
-          }
-        })
+      } else {
+        toast.error(
+          "Oops, something went wrong!",
+          {
+            style: {
+              background:
+                colors.sidebarColor,
+              color: "white",
+            },
+          },
+        );
       }
       console.log(err.message);
     } finally {
@@ -101,12 +108,12 @@ const ImagePage = () => {
 
   return (
     <>
-    <Meta
-      title="Image Generator | TriboAI"
-      description="Generate images from descriptive text for free. Specify the amount and resolution of the images and wait for the magic to happen."
-      url="https://www.triboai.com/image"
-      ogUrl="https://www.triboai.com/image"
-    />
+      <Meta
+        title='Image Generator | TriboAI'
+        description='Generate images from descriptive text for free. Specify the amount and resolution of the images and wait for the magic to happen.'
+        url='https://www.triboai.com/image'
+        ogUrl='https://www.triboai.com/image'
+      />
       <div>
         <Heading
           title='Image Generator'
@@ -135,7 +142,7 @@ const ImagePage = () => {
                   <FormItem className='col-span-12 lg:col-span-10 w-3/4'>
                     <FormControl className='m-0 px-1'>
                       <Input
-                      required
+                        required
                         className='border-0 rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
                         disabled={
                           isLoading
@@ -274,20 +281,20 @@ const ImagePage = () => {
                 />
               </Button>
               <div className='bottom-4 md:mx-4 lg:mx-6 flex flex-wrap'>
-        <TriboAIWarning
-          warning='TriboAI may produce
+                <TriboAIWarning
+                  warning='TriboAI may produce
           inaccurate images
           about people, places, or
           facts.'
-        />
-      </div>
+                />
+              </div>
             </form>
           </Form>
         </div>
 
         <div className='px-4 lg:px-8'>
           <div className='space-y-4 mt-4'>
-          {isLoading && (
+            {isLoading && (
               <div
                 className='flex justify-center top-0 bottom-0 left-0 right-0 fixed'
                 style={{
@@ -295,7 +302,6 @@ const ImagePage = () => {
                     colors.sidebarColor,
                   opacity: 0.7,
                   zIndex: "100",
-                  
                 }}>
                 <div className=' rounded-full  md:ml-72'>
                   <Loader />
@@ -349,7 +355,7 @@ const ImagePage = () => {
           </div>
         </div>
       </div>
-      
+      <CopyRight />
     </>
   );
 };
