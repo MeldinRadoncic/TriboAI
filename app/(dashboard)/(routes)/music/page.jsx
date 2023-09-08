@@ -33,6 +33,7 @@ import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import TriboAIWarning from "@/components/TriboAIWarning";
 import Meta from "@/components/SEO/Meta";
+import { CopyRight } from "@/components/Copyright";
 
 const MusicPage = () => {
   const router = useRouter();
@@ -159,7 +160,7 @@ const MusicPage = () => {
               onSubmit={form.handleSubmit(
                 onSubmit,
               )}
-              className='flex justify-center items-center md:ml-8 lg:w-full rounded-lg border p-4  md:px-6 lg:px-12 focus-within:shadow-sm bg-red-800'>
+              className='flex justify-center items-center md:ml-8 lg:w-full rounded-lg border p-4  md:px-6 lg:px-12 focus-within:shadow-sm'>
               <FormField
                 name='prompt'
                 render={({ field }) => (
@@ -204,6 +205,7 @@ const MusicPage = () => {
           />
         </div>
       </div>
+      <CopyRight  />
     </>
   );
 };

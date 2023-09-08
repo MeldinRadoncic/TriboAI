@@ -167,8 +167,8 @@ const CodePage = () => {
                         "p-8 w-full flex items-start gap-x-8 rounded-lg",
                         message.role ===
                           "user"
-                          ? "bg-white text-sm border border-black/10 justify-start self-end md:w-2/4 lg:w-2/4"
-                          : `justify-start bg-white text-sm text-gray-800 md:w-3/4 lg:w-3/4 last:mb-36`,
+                          ? "bg-white text-base border border-black/10 justify-start self-end md:w-2/4 lg:w-2/4"
+                          : `justify-start bg-white text-base text-gray-800 md:w-3/4 lg:w-3/4 last:mb-36`,
                       )}>
                       {message.role ===
                       "user" ? (
@@ -189,7 +189,7 @@ const CodePage = () => {
                               ...props
                             }) => (
                               <div
-                                className={`overflow-hidden w-full my-2 text-xs  p-4 rounded-lg`}
+                                className={`overflow-hidden w-full my-2 text-base  p-4 rounded-lg`}
                                 style={{
                                   backgroundColor:
                                     colors.sidebarColor,
@@ -212,7 +212,7 @@ const CodePage = () => {
                               />
                             ),
                           }}
-                          className='text-sm leading-7 overflow-hidden'>
+                          className='text-base leading-7 overflow-hidden'>
                           {message.content ||
                             ""}
                         </ReactMarkdown>

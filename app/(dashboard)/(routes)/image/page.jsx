@@ -126,9 +126,9 @@ const ImagePage = () => {
           }
         />
 
-        {/* FROM HERE */}
+        
 
-        <div className='w-full my-12'>
+        <div className='w-full my-12 overflow-hidden'>
           {/* Creating the form which takes all the props from form constant */}
           <Form {...form}>
             <form
@@ -340,11 +340,11 @@ const ImagePage = () => {
                           src,
                         );
                       }}
-                      variant='secondary'
-                      className='w-full'>
+                      
+                      className='w-full mb-16 md:mb-20 lg:mb-24 xl:mb-24'>
                       <Download
                         className='h-4 w-4 mr-2'
-                        color='green'
+                        color='white'
                       />
                       Download
                     </Button>
