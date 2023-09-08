@@ -37,6 +37,7 @@ import Empty from "@/components/Empty";
 import UserAvatar from "@/components/Avatars/UserAvatar";
 import ChatbotAvatar from "@/components/Avatars/ChatbotAvatar";
 import TriboAIWarning from "@/components/TriboAIWarning";
+import Meta from "@/components/SEO/Meta";
 
 const ConversationPage = () => {
   const router = useRouter();
@@ -106,6 +107,12 @@ const ConversationPage = () => {
 
   return (
     <>
+    <Meta 
+    title='Conversation | TriboAI'
+    description='Chat Smartly with TriboAI. Get answers to your questions.'
+    url='https://www.triboai.com/conversation'
+    ogUrl='https://www.triboai.com/conversation'
+    />
       <div>
         <Heading
           title='Conversation'

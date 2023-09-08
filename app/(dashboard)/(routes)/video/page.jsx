@@ -31,6 +31,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import TriboAIWarning from "@/components/TriboAIWarning";
+import Meta from "@/components/SEO/Meta";
 
 const VideoPage = () => {
   const router = useRouter();
@@ -79,6 +80,12 @@ const VideoPage = () => {
 
   return (
     <>
+    <Meta 
+    title='Video Generator | TriboAI'
+    description='Turn your words into video for free. Describe your video in a few words and wait for magic to happen.'
+    url='https://www.triboai.com/video'
+    ogUrl='https://www.triboai.com/video'
+    />
       <div>
         <Heading
           title='Video Generation'

@@ -17,6 +17,7 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 import Heading from "@/components/Heading";
 import CopyButton from "@/components/CopyButton";
@@ -37,7 +38,7 @@ import UserAvatar from "@/components/Avatars/UserAvatar";
 import ChatbotAvatar from "@/components/Avatars/ChatbotAvatar";
 import TriboAIWarning from "@/components/TriboAIWarning";
 import useProModal from "@/hook/use-pro-modal";
-import { toast } from "react-hot-toast";
+import Meta from "@/components/SEO/Meta";
 
 const CodePage = () => {
   const router = useRouter();
@@ -87,13 +88,17 @@ const CodePage = () => {
         err?.response?.status === 403
       ) {
         proModal.onOpen();
-      }else{
-        toast.error("Oops! Something went wrong.",{
-          style: {
-            backgroundColor: colors.sidebarColor,
-            color: "white",
+      } else {
+        toast.error(
+          "Oops! Something went wrong.",
+          {
+            style: {
+              backgroundColor:
+                colors.sidebarColor,
+              color: "white",
+            },
           },
-        })
+        );
       }
       console.log(err.message);
     } finally {
@@ -103,6 +108,12 @@ const CodePage = () => {
 
   return (
     <>
+      <Meta
+        title='Code Generator | TriboAI'
+        description='Generate code from natural language for free. Describe your code in a few words and wait for magic to happen.'
+        url='https://www.triboai.com/code'
+        ogUrl='https://www.triboai.com/code'
+      />
       <div>
         <Heading
           title='Code Generator'
@@ -133,7 +144,7 @@ const CodePage = () => {
             )}
             {messages.length === 0 &&
               !isLoading && (
-                <div className="w-full h-96">
+                <div className='w-full h-96'>
                   <Empty
                     label='Generate your code'
                     color={{

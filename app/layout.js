@@ -7,18 +7,21 @@ import ModalProvider from '@/components/Models-Provider'
 import { CrispProvider } from '@/components/CrispProvider'
 import { ToasterProvider } from '@/components/ToasterProvider'
 import { CopyRight } from '@/components/Copyright'
+import Meta from '@/components/SEO/Meta'
 
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
-  title: 'TriboAI',
-  description: 'TriboAI offers powerful, on-demand AI solutions for generating images, music, videos, code snippets and more. Elevate your projects with our easy-to-use platform.',
-  icon: 'favicon.ico',
-}
+// export const metadata = {
+//   title: 'TriboAI',
+//   description: 'TriboAI offers powerful, on-demand AI solutions for generating images, music, videos, code snippets and more. Elevate your projects with our easy-to-use platform.',
+//   icon: 'favicon.ico',
+// }
 
 export default function RootLayout({ children }) {
   return (
+    <>
+    <Meta/> 
     <ClerkProvider>
     <html lang="en">
       <CrispProvider />
@@ -30,5 +33,6 @@ export default function RootLayout({ children }) {
         </body>
     </html>
     </ClerkProvider>
+    </>
   )
 }

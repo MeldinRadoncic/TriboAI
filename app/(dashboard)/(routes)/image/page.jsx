@@ -46,6 +46,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { toast } from "react-hot-toast";
+import Meta from "@/components/SEO/Meta";
 
 const ImagePage = () => {
   const router = useRouter();
@@ -100,6 +101,12 @@ const ImagePage = () => {
 
   return (
     <>
+    <Meta
+      title="Image Generator | TriboAI"
+      description="Generate images from descriptive text for free. Specify the amount and resolution of the images and wait for the magic to happen."
+      url="https://www.triboai.com/image"
+      ogUrl="https://www.triboai.com/image"
+    />
       <div>
         <Heading
           title='Image Generator'

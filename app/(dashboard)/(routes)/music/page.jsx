@@ -14,6 +14,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 import Heading from "@/components/Heading";
 import CopyButton from "@/components/CopyButton";
@@ -31,7 +32,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import TriboAIWarning from "@/components/TriboAIWarning";
-import { toast } from "react-hot-toast";
+import Meta from "@/components/SEO/Meta";
 
 const MusicPage = () => {
   const router = useRouter();
@@ -83,6 +84,12 @@ const MusicPage = () => {
 
   return (
     <>
+      <Meta 
+        title='Music Generator | TriboAI'
+        description='Turn your words into music for free. Describe your music in a few words and wait for magic to happen.'
+        url='https://www.triboai.com/music'
+        ogUrl='https://www.triboai.com/music'
+      />
       <div>
         <Heading
           title='Music Generation'
