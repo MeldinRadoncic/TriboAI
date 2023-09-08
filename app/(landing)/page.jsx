@@ -1,4 +1,5 @@
 
+import { CopyRight } from "@/components/Copyright";
 import LandingContent from "@/components/LandingContent";
 import LandingHero from "@/components/LandingHero";
 import LandingNavbar from "@/components/LandingNavbar";
@@ -10,6 +11,7 @@ const LandingPage = () => {
 <LandingNavbar />
 <LandingHero />
 <LandingContent />
+<CopyRight />
         </div>
     )
 

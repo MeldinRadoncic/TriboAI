@@ -4,7 +4,7 @@ import colors from "@/config/colors"
 export const CopyRight = () => {
 
     return (
-        <div className='text-white text-sm text-muted-foreground text-center absolute bottom-0 w-full py-6 md:pl-72 lg:pl-72 xl:pl-72'
+        <div className='text-white text-sm text-muted-foreground text-center py-4'
         // style={{ backgroundColor:colors?.sidebarColor }}
         >
         <p className='block text-muted-foreground'>
