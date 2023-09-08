@@ -10,6 +10,7 @@ import {
   Sheet,
   SheetTrigger,
   SheetContent,
+  SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Sidebar from "@/components/Sidebar";
