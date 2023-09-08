@@ -61,7 +61,7 @@ const LandingHero = () => {
                 <div>
                     <Link href={isSignedIn ? '/dashboard' : '/sign-up'}>
                         
-                             <Button variant='premium' className='text-white rounded-full px-6 py-6 text-sm md:text-xl font-bold mt-12'>
+                             <Button variant='premium' className='text-white rounded-full px-12 py-6 md:py-8 lg:py-8 text-sm md:text-xl font-bold mt-12'>
                                     FREE Trail
                              </Button>
                         
