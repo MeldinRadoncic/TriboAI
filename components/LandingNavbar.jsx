@@ -21,7 +21,7 @@ const LandingNavbar = () => {
   return (
     <nav className="flex items-center justify-between p-4 bg-transparent">
         <Link href='/' className='flex items-center'>
-            <div className="relative h-8 animate-bounce w-8 -rotate-12 mr-4">
+            <div className="relative w-6 h-6 -rotate-12 -rotate-12">
                 <Image
                 src="/images/logo.png"
                 fill
@@ -38,7 +38,8 @@ const LandingNavbar = () => {
             className='rounded-full px-4 py-2 text-white font-bold'
             >
                 Get Started
-                </Button>            </Link>
+                </Button> 
+                           </Link>
 
         </div>
         </nav>

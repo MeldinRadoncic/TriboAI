@@ -20,13 +20,13 @@ const LandingHero = () => {
     const { isSignedIn } = useAuth()
 
     return (
-        <div className="text-white font-bold py-24 text-center space-y-5">
+        <div className="text-white font-bold  py-14 sm:py-14 md:py-24 lg:py-24 text-center space-y-5">
             <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold flex items-center flex-col justify-center">
                 <Image 
                 src="/images/logo-transparent.png"
                 alt="triboai logo"
-                width={80}
-                height={80}
+                width={60}
+                height={60}
                 className="-mb-6 z-0 rotate-[25deg]"
                 />
                 <h1 className={cn("tracking-wide z-30", font.className)}>TriboAI</h1>
