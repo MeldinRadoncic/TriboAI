@@ -1,8 +1,1 @@
-{
-    "functions": {
-      "api/*": {
-        "timeout": 60
-      }
-    }
-  }
   
