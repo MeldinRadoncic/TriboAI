@@ -266,6 +266,14 @@ const ImagePage = () => {
                   size={12}
                 />
               </Button>
+              <div className='bottom-4 md:mx-4 lg:mx-6 flex flex-wrap'>
+        <TriboAIWarning
+          warning='TriboAI may produce
+          inaccurate images
+          about people, places, or
+          facts.'
+        />
+      </div>
             </form>
           </Form>
         </div>
@@ -334,14 +342,7 @@ const ImagePage = () => {
           </div>
         </div>
       </div>
-      <div className='bottom-4 md:mx-4 lg:mx-6 flex flex-wrap'>
-        <TriboAIWarning
-          warning='TriboAI may produce
-          inaccurate images
-          about people, places, or
-          facts.'
-        />
-      </div>
+      
     </>
   );
 };

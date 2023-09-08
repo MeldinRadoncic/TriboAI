@@ -26,20 +26,7 @@ const LandingContent = () => {
             ))}
       </div>
 
-      <div className='text-white text-sm text-muted-foreground text-center mt-8'>
-        <p className='block text-muted-foreground'>
-          @ All rights reserved 2023
-        </p>
-        <p className='text-muted-foreground'>
-          TriboAI |{" "}
-          <Link
-            href={
-              "https://www.appwizardpro.com"
-            }>
-            App WIzar Pro
-          </Link>
-        </p>
-      </div>
+      
     </div>
   );
 };

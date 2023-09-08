@@ -6,6 +6,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import ModalProvider from '@/components/Models-Provider'
 import { CrispProvider } from '@/components/CrispProvider'
 import { ToasterProvider } from '@/components/ToasterProvider'
+import { CopyRight } from '@/components/Copyright'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
         <ModalProvider />
         <ToasterProvider />
         {children}
+        <CopyRight />
         </body>
     </html>
     </ClerkProvider>
