@@ -16,7 +16,7 @@ export const CopyRight = () => {
             href={
               "https://www.appwizardpro.com"
             }>
-            App WIzar Pro
+            App Wizard Pro
           </Link>
         </p>
       </div>

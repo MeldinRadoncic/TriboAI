@@ -29,7 +29,7 @@ const Sidebar = ({
 
   return (
     <div
-      className={`space-y-4 py-4 flex flex-col h-full  text-white`}
+      className={`space-y-4 py-4 flex flex-col h-full text-white overflow-auto`}
       style={{
         backgroundColor:
           colors.sidebarColor,
