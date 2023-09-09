@@ -13,9 +13,8 @@ datasource db {
 model UserApiLimit {
   id String  @id @default(cuid())
   userId String @unique
-  
+  name String
   count Int @default(0)
-  customLimit Int @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

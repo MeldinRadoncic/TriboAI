@@ -5,13 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Montserrat } from "next/font/google";
 import { usePathname } from "next/navigation";
-import { XCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { SidebarRoutes } from "@/AppData/AppData";
-import colors from "@/config/colors";
+import  colors  from "@/config/colors";
 import FreeCounter from "./FreeCounter";
-import { Button } from "@/components/ui/button";
 
 // Use the montserrat font for the logo
 const montserrat = Montserrat({
@@ -57,12 +55,7 @@ const Sidebar = ({
           </h1>
         </Link>
             
-            <Button 
-            className='absolute top-0 right-0 mt-2 mr-2'
-            >
-              <XCircle size='24' color={ colors?.messageIcon }/>
-
-            </Button>
+            
         
 
         <div className='space-y-2'>

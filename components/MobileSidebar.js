@@ -5,6 +5,8 @@ import {
   useEffect,
 } from "react";
 import { Menu } from "lucide-react";
+import { XCircle } from "lucide-react";
+import { colors } from "@/config/colors";
 
 import {
   Sheet,
@@ -49,6 +51,20 @@ const MobileSidebar = ({
           apiLimitCount={apiLimitCount}
           isPro={isPro}
         />
+        <SheetClose>
+          <Button
+            variant='ghost'
+            size='icon'
+            className='md:hidden'>
+            <XCircle size='24' color={ colors?.messageIcon }/>
+          </Button>
+        <Button 
+            className='absolute top-0 right-0 mt-2 mr-2'
+            >
+              <XCircle size='24' color={ colors?.messageIcon }/>
+
+            </Button>
+        </SheetClose>
       </SheetContent>
     </Sheet>
   );

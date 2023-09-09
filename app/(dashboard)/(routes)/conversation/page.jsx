@@ -82,6 +82,8 @@ const ConversationPage = () => {
         userMessage,
         response.data,
       ]);
+
+
       form.reset();
     } catch (err) {
       if (
@@ -177,8 +179,8 @@ const ConversationPage = () => {
                         "p-8 w-full flex items-start gap-x-8 rounded-lg",
                         message.role ===
                           "user"
-                          ? "bg-white text-base border border-black/10 justify-start self-end md:w-2/4 lg:w-2/4"
-                          : `justify-start bg-[#5A9] md:w-3/4 lg:w-3/4 last:mb-36`,
+                          ? "bg-white text-base  border border-black/10 justify-start self-end md:w-2/4 lg:w-2/4"
+                          : `justify-start bg-[#5A9] text-white text-opacity-100 font-semibold md:w-3/4 lg:w-3/4 last:mb-36`,
                       )}>
                       {message.role ===
                       "user" ? (
@@ -189,7 +191,7 @@ const ConversationPage = () => {
                         </>
                       )}
 
-                      <p className='text-base text-white text-opacity-100 font-semibold'>
+                      <p className='text-base'>
                         {
                           message.content
                         }
