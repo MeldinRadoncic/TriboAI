@@ -93,7 +93,7 @@ const MusicPage = () => {
       />
       <div>
         <Heading
-          title='Music Generation'
+          title='Music Generator'
           description='Turn your words into music.'
           icon={
             <Music2Icon
