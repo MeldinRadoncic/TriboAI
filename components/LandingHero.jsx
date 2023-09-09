@@ -21,7 +21,7 @@ const LandingHero = () => {
 
     return (
         <div className="text-white font-bold  py-14 sm:py-14 md:py-24 lg:py-24 text-center space-y-5">
-            <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold flex items-center flex-col justify-center">
+            <div className="text-5xl wp\ sm:text-6xl md:text-7xl lg:text-8xl font-extrabold flex items-center flex-col justify-center">
                 <Image 
                 src="/images/logo-transparent.png"
                 alt="triboai logo"

@@ -89,7 +89,7 @@ const VideoPage = () => {
     />
       <div>
         <Heading
-          title='Video Generation'
+          title='Video Generator'
           description='Turn your words into video.'
           icon={
             <VideoIcon
