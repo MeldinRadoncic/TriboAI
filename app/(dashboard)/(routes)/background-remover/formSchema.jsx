@@ -1,16 +1,21 @@
 import * as z from "zod";
 
 const formSchema = z.object({
-    prompt: z.any().refine((value) => {
-        // Check if the value is a file or an image
-        if (!value) {
-            return false;
-        }
-        return true;
+    prompt: z.union([
+      z.string().url(), // Allow a valid URL
+      z.string(),        // Allow a string (non-URL)
+    ]).refine((value) => {
+      // Check if the value is either a URL or a string
+      if (!value) {
+        return false;
+        console.log("Please provide a valid image URL or a description");
+      }
+      return true;
     }, {
-        message: "Please upload a valid image file",
+      message: "Please provide a valid image URL or a description",
     }),
-});
+  });
+  
 
 const amountOptions = [
     {

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import {
   Eraser,
   SendIcon,
@@ -52,12 +52,12 @@ const BackgroundRemoverPage = () => {
   const router = useRouter();
   const proModal = useProModal();
   const [image, setImage] =
-    useState(null);
+    useState("");
   // Use the form schema to create a form with react-hook-form
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      prompt: null,
+      prompt: "",
     },
   });
   // Loading State from the form
@@ -71,11 +71,9 @@ const BackgroundRemoverPage = () => {
         "/api/background-remover",
         value,
       );
-      // Loop through the response data and set the images state to the urls
-      // const urls = response.data.map(
-      //   (image) => image.url,
-      // );
-      // setImage(urls);
+      console.log(response);
+      setImage(response.data);
+     
 
       form.reset();
     } catch (err) {
@@ -139,9 +137,9 @@ const BackgroundRemoverPage = () => {
                     <FormItem className='col-span-12 lg:col-span-10 w-3/4'>
                       <FormControl className='m-0 px-1'>
                         <Input
-                          type='file'
-                          accept='image/*'
-                          className='border-0 rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
+                          type='text'
+                        placeholder='Paste your image URL here'
+                          claplaoassName='border-0 rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
                           disabled={
                             isLoading
                           }
@@ -153,6 +151,7 @@ const BackgroundRemoverPage = () => {
                   </>
                 )}
               />
+
 
               <Button
                 type='submit'
@@ -208,15 +207,16 @@ const BackgroundRemoverPage = () => {
               </div>
             )}
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8'>
+            <div className='flex justify-center items-center mt-8'>
               {image && (
                 <Card
-                  key={src}
+                  key={image}
                   className='rounded-lg overflow-hidden'>
                   <div className='relative aspect-square'>
                     <Image
-                      src={src}
-                      fill
+                      src={image}
+                      width={512}
+                      height={512}
                       alt='Image'
                     />
                   </div>
@@ -224,7 +224,8 @@ const BackgroundRemoverPage = () => {
                     <Button
                       onClick={() => {
                         window.open(
-                          src,
+                          image,
+                          "_blank"
                         );
                       }}
                       className='w-full mb-16 md:mb-20 lg:mb-24 xl:mb-24'>
