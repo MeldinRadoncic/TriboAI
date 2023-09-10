@@ -3,6 +3,7 @@ import {
   LayoutDashboard,
   MessageSquare,
   ImageIcon,
+  Eraser,
   VideoIcon,
   Music2Icon,
   Code2Icon,
@@ -46,9 +47,22 @@ const SidebarRoutes = [
         color={colors.imageIcon}
       />
     ),
+    },
+    {
+      id: 4,
+      name: "Background Remover",
+      href: "/background-remover",
+      icon: (
+        <Eraser
+          size={16}
+          color={colors.removeBackground}
+        />
+      ),
+    
+    
   },
   {
-    id: 4,
+    id: 5,
     name: "Video Generator",
     href: "/video",
     icon: (
@@ -59,7 +73,7 @@ const SidebarRoutes = [
     ),
   },
   {
-    id: 5,
+    id: 6,
     name: "Music Generator",
     href: "/music",
     icon: (
@@ -70,7 +84,7 @@ const SidebarRoutes = [
     ),
   },
   {
-    id: 6,
+    id: 7,
     name: "Code Generator",
     href: "/code",
     icon: (
@@ -81,7 +95,7 @@ const SidebarRoutes = [
     ),
   },
   {
-    id: 7,
+    id: 8,
     name: "Settings",
     href: "/settings",
     icon: (
@@ -115,9 +129,21 @@ const Tools = [
         color={colors.imageIcon}
       />
     ),
+    },
+    {
+      id: 3,
+      name: "Background Remover",
+      href: "/background-remover",
+      icon: (
+        <Eraser
+          size={24}
+          color={colors.removeBackground}
+        />
+      ),
+    
   },
   {
-    id: 3,
+    id: 4,
     name: "Video Generator",
     href: "/video",
     icon: (
@@ -128,7 +154,7 @@ const Tools = [
     ),
   },
   {
-    id: 4,
+    id: 5,
     name: "Music Generator",
     href: "/music",
     icon: (
@@ -139,7 +165,7 @@ const Tools = [
     ),
   },
   {
-    id: 5,
+    id: 6,
     name: "Code Generator",
     href: "/code",
     icon: (
