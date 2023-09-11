@@ -6,7 +6,7 @@ import {
 } from "react";
 import { Menu } from "lucide-react";
 import { XCircle } from "lucide-react";
-import { colors } from "@/config/colors";
+import  colors  from "@/config/colors";
 
 import {
   Sheet,

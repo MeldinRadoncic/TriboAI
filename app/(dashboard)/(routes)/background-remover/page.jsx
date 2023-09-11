@@ -139,7 +139,7 @@ const BackgroundRemoverPage = () => {
                         <Input
                           type='text'
                         placeholder='Paste your image URL here'
-                          claplaoassName='border-0 rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
+                          className='border-0 rounded-sm focus-visible:ring-0 outline-none focus-visible:ring-transparent'
                           disabled={
                             isLoading
                           }
