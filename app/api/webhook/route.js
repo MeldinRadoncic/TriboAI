@@ -11,7 +11,6 @@ export async function POST(req) {
     const signature = headers().get('Stripe-Signature').trim();
 
     console.log("signature", signature);
-    console.Console("Webhook ", process.env.STRIPE_WEBHOOK_SECRET.trim());
 
     let event;
 
