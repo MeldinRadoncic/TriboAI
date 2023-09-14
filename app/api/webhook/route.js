@@ -8,7 +8,10 @@ import { stripe } from "@/lib/stripe";
 export async function POST(req) {
         
     const body = await req.text();
-    const signature = headers().get('Stripe-Signature');
+    const signature = headers().get('Stripe-Signature').trim();
+
+    console.log("signature", signature);
+    console.Console("Webhook ", process.env.STRIPE_WEBHOOK_SECRET.trim());
 
     let event;
 
@@ -17,8 +20,10 @@ export async function POST(req) {
         event = stripe.webhooks.constructEvent(
             body,
              signature,
-              process.env.STRIPE_WEBHOOK_SECRET
+              process.env.STRIPE_WEBHOOK_SECRET.trim()
               );
+
+              console.log("event", event);
 
     }catch(err){
         console.log("WEBHOOK_ERROR: ", err.message);
@@ -65,5 +70,5 @@ export async function POST(req) {
             });
         }
 
-        return new NextResponse(null, { status: 200 })
+        return new NextResponse( session, { status: 200 })
 }
