@@ -72,10 +72,10 @@ export async function POST(req) {
 
             
                 // If user cancels subscription, delete the user from userSubscription table on the end data of the subscription
+
                 
+                    
                 
-                    })
-                }
 
 
 
