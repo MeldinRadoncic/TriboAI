@@ -10,7 +10,6 @@ export async function POST(req) {
     const body = await req.text();
     const signature = headers().get('Stripe-Signature').trim();
 
-    console.log("signature", signature);
 
     let event;
 
@@ -22,7 +21,6 @@ export async function POST(req) {
               process.env.STRIPE_WEBHOOK_SECRET.trim()
               );
 
-              console.log("event", event);
 
     }catch(err){
         console.log("WEBHOOK_ERROR: ", err.message);
@@ -40,11 +38,14 @@ export async function POST(req) {
         if(!session?.metadata?.userId){
             return new NextResponse("UserId is required ", { status: 400 });
         }
+        console.log("EVENT ", event.data)
 
         // Add the user subscription to the database
         await prisma_db.userSubscription.create({
             data: {
                 userId: session?.metadata?.userId,
+                name:event.data.object.customer_details.name,
+                email:event.data.object.customer_details.email,               
                 stripeCustomerId: subscription.customer,
                 stripeSubscriptionId: subscription.id,
                 stripePriceId: subscription.items.data[0].price.id,
@@ -57,17 +58,29 @@ export async function POST(req) {
             const subscription = await stripe.subscriptions.retrieve(
                 session.subscription
             );
+
             await prisma_db.userSubscription.update({
                 where: {
                     stripeSubscriptionId: subscription.id,
                 },
+                
                 data:{
                     stripePriceId: subscription.items.data[0].price.id,
                     stripeCurrentPeriodEnd: new Date(
                         subscription.current_period_end * 1000),   
                 }
+
+            
+                // If user cancels subscription, delete the user from userSubscription table on the end data of the subscription
+                
+                
+                    })
+                }
+
+
+
             });
-        }
+        }           
 
         return new NextResponse( session, { status: 200 })
 }

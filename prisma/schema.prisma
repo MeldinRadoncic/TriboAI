@@ -25,8 +25,8 @@ model UserApiLimit {
 model userSubscription {
   id String  @id @default(cuid())
   userId String @unique
-  name String
-  email String 
+  name String @default("")
+  email String @default("")
   stripeCustomerId String? @unique @map(name:"stripe_customer_id")
   stripeSubscriptionId String? @unique @map(name:"stripe_subsription_id")
   stripePriceId String? @unique @map(name:"stripe_price_id")
