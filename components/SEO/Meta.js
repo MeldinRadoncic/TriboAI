@@ -29,20 +29,20 @@ function Meta(props) {
       
     ],
     icon = "./images/favicon.ico",
-    author = "App Wizard Pro",
+    author = "App Wizard",
     ogTitle = "TriboAI | AI-Powered Creative Toolkit",
     ogDescription = "Create images, videos, text, music, and code effortlessly with TriboAI. Start your creative journey today for FREE.",
     ogImage = "/images/logo-transparent.png",
     ogUrl = "https://www.triboai.com",
     ogType = "website",
-    ogArticleAuthor = "App Wizard Pro",
+    ogArticleAuthor = "App Wizard",
   } = props;
 
   return (
     <>
       <meta
         name='organization'
-        content='App Wizard Pro'
+        content='App Wizard'
       />
       <title>{title}</title>
       <meta
