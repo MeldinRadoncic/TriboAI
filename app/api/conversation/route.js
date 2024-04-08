@@ -3,7 +3,10 @@ import {
   Configuration,
   OpenAIApi,
 } from "openai";
-import { auth, currentUser } from "@clerk/nextjs";
+import {
+  auth,
+  currentUser,
+} from "@clerk/nextjs";
 import conversationTemplate from "@/app/AItemplates/conversatio-template";
 import {
   increaseAPILimit,
@@ -25,15 +28,17 @@ export async function POST(req) {
   try {
     // Check for authentication using auth from clerk
     const { userId } = auth();
-    const user  = await currentUser();
+    const user = await currentUser();
 
     const currentUserInfo = {
       firstName: user?.firstName,
       lastName: user?.lastName,
       gender: user?.gender,
       birthday: user?.birthday,
-      email: user?.emailAddresses[0]?.emailAddress,
-    }
+      email:
+        user?.emailAddresses[0]
+          ?.emailAddress,
+    };
 
     // Check if the user is authenticated
     if (!userId) {
@@ -60,11 +65,12 @@ export async function POST(req) {
     const { messages } = body;
     const systemMessage = {
       role: "assistant",
-      content: conversationTemplate(currentUserInfo)
+      content: conversationTemplate(
+        currentUserInfo,
+      ),
     };
 
     messages.push(systemMessage);
-
 
     // Check if the messages are present
     if (!messages) {
@@ -80,8 +86,9 @@ export async function POST(req) {
     const freeTrial =
       await checkAPILimit();
 
-      // Check if the user has a subscription
-      const isPro = await checkSubscription();
+    // Check if the user has a subscription
+    const isPro =
+      await checkSubscription();
 
     // If the user is not on free trial, return the status code 403
     if (!freeTrial && !isPro) {
@@ -107,9 +114,8 @@ export async function POST(req) {
       );
 
     // Increase the API limit for the user if the user is on free trial
-    if(!isPro){
+    if (!isPro) {
       await increaseAPILimit();
-
     }
     // Return the response from the API
     return new NextResponse(
