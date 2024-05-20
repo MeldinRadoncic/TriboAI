@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import tribodb from "@/postgresql/connectDB";
 
-import  prisma_db  from "@/lib/prismadb";
 import { stripe } from "@/lib/stripe";
 
  
@@ -71,23 +70,7 @@ console.log("Checkout session completed: ", email);
                 session.subscription
             );
 
-            // await prisma_db.userSubscription.update({
-            //     where: {
-            //         stripeSubscriptionId: subscription.id,
-            //     },
-                
-            //     data:{
-            //         stripePriceId: subscription.items.data[0].price.id,
-            //         stripeCurrentPeriodEnd: new Date(
-            //             subscription.current_period_end * 1000),   
-            //     }
-
             
-            //     // If user cancels subscription, delete the user from userSubscription table on the end data of the subscription
-
-                
-        
-            // });
 
             await tribodb.query(`UPDATE usersubscription SET stripePriceId = $1, stripeCurrentPeriodEnd = $2 WHERE stripeSubscriptionId = $3`, [subscription.items.data[0].price.id, new Date(subscription.current_period_end * 1000), subscription.id]);
             console.log("INVOICE PAYMENT SUCCEEDED: ", event.data.object.customer_details.email);
