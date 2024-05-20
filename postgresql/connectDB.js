@@ -8,7 +8,7 @@ const tribodb = new Pool({
     database: isProduction ? process.env.TRIBODB_PRODUCTION_URL : process.env.TRIBODB_DEV_URL,
     password: isProduction ? process.env.TRIBODB_PRODUCTION_PASSWORD : process.env.TRIBODB_DEV_PASSWORD,
     port: isProduction ? process.env.TRIBODB_PRODUCTION_PORT : process.env.TRIBODB_DEV_PORT,
-    ssl: {rejectUnauthorized: false}
+    ssl: {rejectUnauthorized: true}
    
 });
 
