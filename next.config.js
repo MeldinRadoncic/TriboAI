@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     domains: [
       "oaidalleapiprodscus.blob.core.windows.net",
-      "replicate.delivery",
+      "replicate.delivery","render.com"
     ],
   },
 };
